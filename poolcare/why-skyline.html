@@ -1,0 +1,154 @@
+<style>
+  #custom-why-skyline {
+    --blue: #1879BF;
+    --blue-dark: #134061;
+    --blue-25: #C6E0F3;
+    --blue-10: #EEF6FC;
+    --text-mid: #4C4C4C;
+    --text: #000000;
+    --border: #E4E4E4;
+    --gray-faint: #F5F5F5;
+    --gray-mid: #B8B8B8;
+    --white: #FFFFFF;
+    --r-sm: 10px;
+    --r-lg: 24px;
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    --sp-section: 56px;
+    --sp-inner: 20px;
+    
+    font-family: 'Roboto', sans-serif;
+    padding: var(--sp-section) 0;
+    background: var(--gray-faint);
+    
+    /* Hack para forçar a largura total da janela ignorando o Elementor */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #custom-why-skyline * { box-sizing: border-box; }
+  
+  #custom-why-skyline .container { 
+    width: 100%; 
+    max-width: 100%; 
+    margin: 0; 
+    padding: 0 var(--sp-inner); 
+    display: block; 
+  }
+  
+  #custom-why-skyline .why-intro { margin-bottom: 36px; max-width: 700px; }
+  
+  #custom-why-skyline .eyebrow { 
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; 
+    color: var(--blue-dark); margin-bottom: 10px; display: block; 
+  }
+  
+  #custom-why-skyline .section-title { 
+    font-family: 'Roboto', sans-serif; font-size: clamp(26px, 7vw, 44px); 
+    font-weight: 700; line-height: 1.1; letter-spacing: -0.8px; color: var(--blue-dark); margin: 0; 
+  }
+  
+  #custom-why-skyline .section-body { 
+    font-size: 16px; line-height: 1.7; color: var(--text-mid); margin-top: 14px; margin-bottom: 0; 
+  }
+  
+  #custom-why-skyline .why-cards { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  
+  #custom-why-skyline .why-card { 
+    background: white; border-radius: var(--r-lg); padding: 22px; border: 1.5px solid var(--border); 
+    transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s; 
+  }
+  
+  @media (hover: hover) { 
+    #custom-why-skyline .why-card:hover { 
+      box-shadow: var(--shadow-md); border-color: var(--blue-25); transform: translateY(-3px); 
+    } 
+  }
+  
+  #custom-why-skyline .why-card-icon { 
+    width: 44px; height: 44px; border-radius: var(--r-sm); background: var(--blue-10); 
+    color: var(--blue); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; 
+  }
+  
+  #custom-why-skyline .why-card-num { 
+    font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; 
+    color: var(--gray-mid); margin-bottom: 6px; 
+  }
+  
+  #custom-why-skyline .why-card-title { 
+    font-family: 'Roboto', sans-serif; font-size: 19px; font-weight: 700; color: var(--blue-dark); 
+    margin-bottom: 6px; line-height: 1.2; margin-top: 0;
+  }
+  
+  #custom-why-skyline .why-card-body { font-size: 14px; line-height: 1.65; color: var(--text-mid); margin: 0; }
+  #custom-why-skyline .why-card-body strong { color: var(--text); font-weight: 600; }
+  
+  @media (min-width: 640px) {
+    #custom-why-skyline .why-cards { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  }
+  @media (min-width: 900px) {
+    #custom-why-skyline { --sp-section: 80px; --sp-inner: 120px; }
+    #custom-why-skyline .why-cards { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+
+<section id="custom-why-skyline">
+  <div class="container">
+    <div style="display:block;width:100%">
+      
+      <div class="why-intro">
+        <span class="eyebrow">Why Skyline</span>
+        <h2 class="section-title">Premium pool care, delivered by our own dedicated experts.</h2>
+        <p class="section-body">
+          We don't farm out your pool to random contractors. Our in-house, fully vetted technicians treat your backyard like their own.
+        </p>
+      </div>
+
+      <div class="why-cards">
+        
+        <!-- Card 1 -->
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <div class="why-card-num">01</div>
+          <h3 class="why-card-title">Our Own Trusted Team</h3>
+          <p class="why-card-body">No subcontractors, no strangers. Every technician is a fully vetted, background-checked employee of Skyline. <strong>True accountability and peace of mind.</strong></p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <div class="why-card-num">02</div>
+          <h3 class="why-card-title">Consistent Excellence</h3>
+          <p class="why-card-body">We assign a dedicated professional to your pool. They learn your equipment, your water chemistry, and your preferences. <strong>Consistency that only an in-house team can provide.</strong></p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </div>
+          <div class="why-card-num">03</div>
+          <h3 class="why-card-title">Total Transparency</h3>
+          <p class="why-card-body">After every visit, you receive detailed water chemistry logs and time-stamped photos of your sparkling pool. <strong>You see the results, even if you aren't home.</strong></p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
+          <div class="why-card-num">04</div>
+          <h3 class="why-card-title">Zero Commitments</h3>
+          <p class="why-card-body">We believe in earning your business every single week. No long-term contracts, no hidden fees. <strong>Cancel, pause, or adjust your plan anytime.</strong></p>
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+</section>

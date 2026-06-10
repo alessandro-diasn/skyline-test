@@ -1,0 +1,49 @@
+:root {
+  /* Cores - Skyline Home Cleaning */
+  --color-primary:   #F79ECA;
+  --color-secondary: #B0D9C7;
+  --color-cta:       #FFD532;
+  --color-nav:       #4B7CF9;
+  --color-contrast:  #8224E3;
+  --color-text:      #3f3f3f;
+  --color-white:     #FFFFFF;
+  --color-surface:   #F9F9FB;
+  --color-border:    #E8E8EF;
+
+  /* Tipografia */
+  --font-base: 'Roboto', sans-serif;
+  --text-h1:   clamp(2rem, 5vw, 3.0625rem);
+  --text-h2:   clamp(1.75rem, 4vw, 3.0625rem);
+  --text-h3:   clamp(1.125rem, 2.5vw, 1.375rem);
+  --text-body-lg: 1.0625rem;
+  --text-body:    0.9375rem;
+  --text-base:    1rem;
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+  --weight-black:   800;
+
+  --leading-tight:  1.1;
+  --leading-snug:   1.15;
+  --leading-normal: 1.65;
+  --leading-relaxed: 1.7;
+
+  /* Espaçamento e Componentes */
+  --btn-radius:       10px;
+  --card-radius:      1rem;
+  --card-padding:     1.75rem 1.5rem;
+  --section-padding:  clamp(3rem, 8vw, 5rem);
+  
+  --container-max:  1280px;
+  --container-pad:  clamp(1.5rem, 5vw, 3rem);
+  --grid-cols:      12;
+  --grid-gap:       1.5rem;
+
+  /* Sombras e Transições */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:  0 4px 16px rgba(0,0,0,.10);
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-base:   240ms;
+  --duration-slow:   400ms;
+}

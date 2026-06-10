@@ -1,0 +1,29 @@
+.u-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.u-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  gap: var(--grid-gap);
+}
+
+.col-full   { grid-column: 1 / -1; }
+.col-half   { grid-column: span 6; }
+.col-third  { grid-column: span 4; }
+.col-quarter{ grid-column: span 3; }
+
+@media (max-width: 640px) {
+  [class*="col-"] { grid-column: 1 / -1; }
+}
+
+.section-padding {
+  padding-block: var(--section-padding);
+}
+
+.section-padding--sm {
+  padding-block: clamp(2rem, 4vw, 3rem);
+}

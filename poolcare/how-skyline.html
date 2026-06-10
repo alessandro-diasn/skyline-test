@@ -1,0 +1,135 @@
+<style>
+  #custom-how-skyline {
+    --blue-dark: #134061;
+    --text-mid: #4C4C4C;
+    --pink: #f79eca;
+    --pink-light: rgba(247, 158, 202, 0.25);
+    --border: #E4E4E4;
+    --white: #FFFFFF;
+    --r-lg: 24px;
+    --r-pill: 100px;
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+    --sp-section: 64px;
+    --sp-inner: 20px;
+    
+    font-family: 'Roboto', sans-serif;
+    padding: var(--sp-section) 0;
+    background: var(--white);
+    
+    /* Hack para forçar a largura total da janela ignorando o Elementor */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #custom-how-skyline * { box-sizing: border-box; }
+  
+  #custom-how-skyline .container { 
+    width: 100%; 
+    max-width: 100%; 
+    margin: 0; 
+    padding: 0 var(--sp-inner); 
+    display: block; 
+  }
+  
+  #custom-how-skyline .how-intro { margin-bottom: 48px; text-align: center; }
+  
+  #custom-how-skyline .eyebrow { 
+    font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; 
+    color: var(--pink); margin-bottom: 12px; display: block; 
+  }
+  
+  #custom-how-skyline .section-title { 
+    font-family: 'Roboto', sans-serif; font-size: clamp(28px, 6vw, 42px); 
+    font-weight: 800; line-height: 1.15; letter-spacing: -0.8px; color: var(--blue-dark); margin: 0; 
+  }
+  
+  #custom-how-skyline .how-grid { 
+    display: grid; gap: 24px; grid-template-columns: 1fr; position: relative;
+  }
+  
+  @media (min-width: 900px) {
+    #custom-how-skyline { --sp-section: 90px; --sp-inner: 120px; }
+    #custom-how-skyline .how-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    
+    /* Linha conectora criativa apenas para o Desktop */
+    #custom-how-skyline .how-grid::before {
+      content: '';
+      position: absolute;
+      top: 64px; /* 36px (padding) + 28px (metade do círculo) */
+      left: 16%;
+      right: 16%;
+      height: 2px;
+      background: var(--pink-light);
+      z-index: 0;
+    }
+  }
+  
+  #custom-how-skyline .how-card { 
+    background: white; border-radius: var(--r-lg); padding: 36px 30px; 
+    border: 2px solid var(--pink-light); transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s; 
+    text-align: center; position: relative; z-index: 1;
+  }
+  
+  @media (hover: hover) { 
+    #custom-how-skyline .how-card:hover { 
+      box-shadow: var(--shadow-md); border-color: var(--pink); transform: translateY(-6px); 
+    } 
+  }
+  
+  #custom-how-skyline .how-step-num { 
+    width: 56px; height: 56px; border-radius: 50%; background: var(--pink); 
+    color: white; font-family: 'Roboto', sans-serif; font-weight: 800; font-size: 24px; 
+    display: flex; align-items: center; justify-content: center; 
+    margin: 0 auto 24px auto; box-shadow: 0 6px 16px rgba(247, 158, 202, 0.4);
+    position: relative; z-index: 2; border: 4px solid white; /* Cria um contorno sobre a linha conectora */
+  }
+  
+  #custom-how-skyline .how-card-title { 
+    font-family: 'Roboto', sans-serif; font-size: 22px; font-weight: 800; color: var(--blue-dark); 
+    margin-bottom: 12px; line-height: 1.25; margin-top: 0;
+  }
+  
+  #custom-how-skyline .how-card-body { 
+    font-size: 15px; line-height: 1.65; color: var(--text-mid); margin: 0; 
+  }
+</style>
+
+<section id="custom-how-skyline">
+  <div class="container">
+    <div style="display:block;width:100%">
+      
+      <div class="how-intro">
+        <span class="eyebrow">How It Works</span>
+        <h2 class="section-title">Effortless pool care in 3 simple steps.</h2>
+      </div>
+
+      <div class="how-grid">
+        
+        <!-- Step 1 -->
+        <div class="how-card">
+          <div class="how-step-num">1</div>
+          <h3 class="how-card-title">Get an Instant Quote</h3>
+          <p class="how-card-body">Enter your address to see your exact price instantly. No phone calls, no hidden fees, just transparent pricing online.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="how-card">
+          <div class="how-step-num">2</div>
+          <h3 class="how-card-title">Schedule Your Visit</h3>
+          <p class="how-card-body">Pick a day that works for you. Our dedicated, fully-vetted technician will be assigned to your pool for consistent care.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="how-card">
+          <div class="how-step-num">3</div>
+          <h3 class="how-card-title">Dive In & Relax</h3>
+          <p class="how-card-body">We handle the dirty work. You'll receive a detailed photo report after every visit so you can see the crystal-clear results.</p>
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+</section>

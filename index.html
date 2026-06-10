@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Skyline Home Cleaning — Professional residential and commercial cleaning services you can trust. Book your first clean in minutes." />
+  <title>Skyline Home Cleaning | Professional Cleaning Services</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+  <!-- CSS Layer -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/utilities.css" />
+</head>
+<body id="home">
+
+  <a href="#main-content" class="u-skip-link">Skip to main content</a>
+
+  <header class="main-header" role="banner">
+    <div class="u-container header-container">
+      
+      <a href="/" class="header-logo" aria-label="Skyline Home Cleaning Home">
+        <picture>
+          <source media="(min-width: 641px)" srcset="assets/logos/logo-desktop-skyline.png">
+          <img src="assets/logos/rounded-mobile-skyline.png" alt="Skyline Home Cleaning Logo" class="header-logo__img">
+        </picture>
+      </a>
+
+      <!-- Menu Hamburger para Mobile -->
+      <button class="header-nav__toggle" data-nav-toggle aria-expanded="false" aria-label="Open navigation menu">
+        <span class="u-sr-only">Menu</span>
+        <div class="hamburger-icon"></div>
+      </button>
+
+      <nav class="header-nav" data-nav-menu aria-label="Main navigation">
+        <ul class="header-nav__list">
+          <li class="header-nav__item"><a href="#home" class="header-nav__link header-nav__link--active">Home</a></li>
+          <li class="header-nav__item"><a href="#services" class="header-nav__link">Services</a></li>
+          <li class="header-nav__item"><a href="#why-choose-us" class="header-nav__link">About Us</a></li>
+          <li class="header-nav__item"><a href="pool-care.html" class="header-nav__link">Pool Care</a></li>
+          <li class="header-nav__item"><a href="#contact" class="header-nav__link">Contact</a></li>
+          <!-- Appointment CTA: visible only inside the mobile hamburger drawer -->
+          <li class="header-nav__item header-nav__cta-mobile">
+            <a href="appointment.html" class="btn btn--cta">Get a Quote</a>
+          </li>
+        </ul>
+      </nav>
+
+      <a href="appointment.html" class="btn btn--cta btn-header-cta">Get a Quote</a>
+
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section aria-label="Hero" class="hero-slider" id="hero" data-hero-slider tabindex="0">
+
+      <!-- Progress bar -->
+      <div class="hero-progress" aria-hidden="true">
+        <div class="hero-progress__bar" data-slider-progress></div>
+      </div>
+
+      <!-- Slides -->
+      <div class="hero-slider__track">
+
+        <!-- Slide 1 -->
+        <div class="hero-slide is-active" style="--slide-bg: #F79ECA;" data-slide="0" aria-hidden="false">
+          <div class="u-container hero-slide__inner">
+            <div class="hero-slide__content">
+              <span class="hero-eyebrow" style="--eyebrow-bg: var(--color-secondary);" data-animate>WELCOME TO SKYLINE HOME CLEANING</span>
+              <h1 class="hero-h1" id="section-hero-title" data-animate>We Are Best Cleaning<br>Services &amp; Solution.</h1>
+              <p class="hero-body" data-animate>Professional cleaning you can trust, so you can spend your time on what truly matters. Book your first clean in minutes.</p>
+              <div class="hero-actions" data-animate>
+                <a href="#services" class="btn btn--secondary hero-btn">Our Services</a>
+                <a href="appointment.html" class="btn btn--outline hero-btn">Get A Free Quote</a>
+              </div>
+            </div>
+          </div>
+          <!-- Image: direct child of slide so position:absolute anchors to slide edges -->
+          <div class="hero-slide__image-wrapper" data-animate>
+            <img src="assets/cleanig-girl-slide1.png" alt="Skyline Home Cleaning professional with supplies" class="hero-slide__image" fetchpriority="high" width="640" height="640" />
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="hero-slide" style="--slide-bg: #B0D9C7;" data-slide="1" aria-hidden="true">
+          <div class="u-container hero-slide__inner">
+            <div class="hero-slide__content">
+              <span class="hero-eyebrow" style="--eyebrow-bg: var(--color-primary);" data-animate>WE ARE SKYLINE</span>
+              <h2 class="hero-h1" data-animate>Best Cleaning Service<br>in Town!</h2>
+              <p class="hero-body" data-animate>Expert residential cleaning tailored to your needs. We handle the mess, you enjoy the rest.</p>
+              <div class="hero-actions" data-animate>
+                <a href="appointment.html" class="btn btn--cta hero-btn">Get a Free Quote</a>
+              </div>
+            </div>
+          </div>
+          <!-- Image: direct child of slide so position:absolute anchors to slide edges -->
+          <div class="hero-slide__image-wrapper" data-animate>
+            <img src="assets/cleanig-girl-slide2.png" alt="Skyline Home Cleaning professional ready to help" class="hero-slide__image" loading="lazy" width="640" height="640" />
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation arrows -->
+      <button class="hero-slider__nav hero-slider__nav--prev" data-slider-prev aria-label="Previous slide">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <button class="hero-slider__nav hero-slider__nav--next" data-slider-next aria-label="Next slide">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+
+      <!-- Dot indicators -->
+      <div class="hero-dots" data-slider-dots aria-label="Slide indicators" role="group"></div>
+
+    </section>
+
+    <!-- Intro Banner / Section Banner -->
+    <section id="services" aria-label="Introduction" class="section-padding--sm" style="background-color: var(--color-white);">
+      <div class="u-container">
+        <div class="section-banner" data-reveal>
+          <div class="section-banner__eyebrow">
+            <span class="section-banner__icon" aria-hidden="true"></span>
+            Excellence in every detail
+          </div>
+          <h2 class="section-banner__title">More than just cleaning, we give you your time back.</h2>
+          <p class="section-banner__desc">We know your schedule is packed. Let our expert team handle the mess so you can focus on what truly matters. A spotless home is just a tap away.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services-grid" aria-labelledby="section-services-title" style="background-color: var(--color-surface);" class="section-padding">
+      <div class="u-container">
+        <!-- Optional section title if needed, visually hidden or kept. Based on the user prompt it's just the grid, but keeping a hidden title is good for accessibility -->
+        <h2 id="section-services-title" class="u-sr-only">Our Services</h2>
+        
+        <div class="u-grid">
+          <!-- Card 1 -->
+          <div class="col-third service-card" style="--card-bg-img: url('../assets/services-cards/services-card1.jpg');" data-reveal>
+            <div class="service-icon-wrap">
+              <img src="assets/icons/png-services/standard-cleaning.png" alt="" aria-hidden="true" width="32" height="32" loading="lazy" />
+            </div>
+            <h3 class="service-card__title">Standard Cleaning</h3>
+            <div class="service-card__bar"></div>
+            <p class="service-card__desc">Consistently fresh, always inviting. The perfect regular maintenance to keep your home healthy, organized, and smelling great every week.</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-third service-card" style="--card-bg-img: url('../assets/services-cards/services-card2.jpg');" data-reveal="data-reveal-delay: 80">
+            <div class="service-icon-wrap">
+              <img src="assets/icons/png-services/deep-cleaning.png" alt="" aria-hidden="true" width="32" height="32" loading="lazy" />
+            </div>
+            <h3 class="service-card__title">Deep Cleaning</h3>
+            <div class="service-card__bar"></div>
+            <p class="service-card__desc">A total home reset. A top-to-bottom scrub that tackles hidden dust and grime in hard-to-reach spots for a truly refreshing feel.</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col-third service-card" style="--card-bg-img: url('../assets/services-cards/services-card7 (1).jpg');" data-reveal="data-reveal-delay: 160">
+            <div class="service-icon-wrap">
+              <img src="assets/icons/png-services/commercia-cleaning.png" alt="" aria-hidden="true" width="32" height="32" loading="lazy" />
+            </div>
+            <h3 class="service-card__title">Commercial Cleaning</h3>
+            <div class="service-card__bar"></div>
+            <p class="service-card__desc">Impress from the first step. Boost productivity and brand image with a professional workspace that's as clean as it is welcoming.</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="col-third service-card" style="--card-bg-img: url('../assets/services-cards/services-card4.jpg');" data-reveal>
+            <div class="service-icon-wrap">
+              <img src="assets/icons/png-services/vacation-retail.png" alt="" aria-hidden="true" width="32" height="32" loading="lazy" />
+            </div>
+            <h3 class="service-card__title">Vacation Rental</h3>
+            <div class="service-card__bar"></div>
+            <p class="service-card__desc">Guest-ready and 5-star worthy. High-standard cleaning for Airbnb/Rentals. We handle the details so you can focus on your superhost status.</p>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="col-third service-card" style="--card-bg-img: url('../assets/services-cards/services-card5.jpg');" data-reveal="data-reveal-delay: 80">
+            <div class="service-icon-wrap">
+              <img src="assets/icons/png-services/move-in-out.png" alt="" aria-hidden="true" width="32" height="32" loading="lazy" />
+            </div>
+            <h3 class="service-card__title">Move In/Out</h3>
+            <div class="service-card__bar"></div>
+            <p class="service-card__desc">The ultimate fresh start. Whether you're moving in or handing over keys, we ensure a spotless transition so you can settle in worry-free.</p>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="col-third service-card" style="--card-bg-img: url('../assets/services-cards/services-card6.jpg');" data-reveal="data-reveal-delay: 160">
+            <div class="service-icon-wrap">
+              <img src="assets/icons/png-services/post-construction.png" alt="" aria-hidden="true" width="32" height="32" loading="lazy" />
+            </div>
+            <h3 class="service-card__title">Post-Construction</h3>
+            <div class="service-card__bar"></div>
+            <p class="service-card__desc">From renovation to relaxation. We eliminate fine dust and debris, turning your construction site into a beautiful, livable space.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Details Grid -->
+    <section id="services-details" class="section-padding" style="background-color: var(--color-primary); color: var(--color-white); overflow: hidden;">
+      <div class="u-container u-grid" style="align-items: center;">
+        
+        <!-- Left Cards -->
+        <div class="col-third" style="display: flex; flex-direction: column; gap: 1.5rem;" data-reveal>
+          <div class="service-item">
+            <div class="service-item__icon-wrap">
+              <span class="service-item__icon" style="--icon: url('../assets/icons/services/house-cleaning.svg');"></span>
+            </div>
+            <div class="service-item__content">
+              <h3 class="service-item__title">House Cleaning</h3>
+              <p class="service-item__desc">Expert deep cleaning for your house.</p>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-item__icon-wrap">
+              <span class="service-item__icon" style="--icon: url('../assets/icons/services/cleaning-brush.svg');"></span>
+            </div>
+            <div class="service-item__content">
+              <h3 class="service-item__title">Office Cleaning</h3>
+              <p class="service-item__desc">Professional workspace sanitization for your office.</p>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-item__icon-wrap">
+              <span class="service-item__icon" style="--icon: url('../assets/icons/services/airbnb-turnovers.svg');"></span>
+            </div>
+            <div class="service-item__content">
+              <h3 class="service-item__title">Airbnb Turnovers</h3>
+              <p class="service-item__desc">Quick turnaround cleaning for rentals.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center Image -->
+        <div class="col-third" style="position: relative; text-align: center; z-index: 2;" data-reveal="data-reveal-delay: 80">
+          <div class="service-center-img-wrap">
+            <div class="service-center-img__bg"></div>
+            <img src="assets/cleaning-girl-services.png" alt="Cleaning professional smiling" class="service-center-img" width="400" height="400" loading="lazy" />
+            <div class="service-center-badge">
+              <span class="service-center-badge__icon">+</span>
+              <span class="service-center-badge__text">Services we<br>provide</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Cards -->
+        <div class="col-third" style="display: flex; flex-direction: column; gap: 1.5rem;" data-reveal="data-reveal-delay: 160">
+          <div class="service-item">
+            <div class="service-item__icon-wrap">
+              <span class="service-item__icon" style="--icon: url('../assets/icons/services/toilet.svg');"></span>
+            </div>
+            <div class="service-item__content">
+              <h3 class="service-item__title">Toilet Cleaning</h3>
+              <p class="service-item__desc">Complete disinfection of toilets and surfaces.</p>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-item__icon-wrap">
+              <span class="service-item__icon" style="--icon: url('../assets/icons/services/kitchen-cleaning.svg');"></span>
+            </div>
+            <div class="service-item__content">
+              <h3 class="service-item__title">Kitchen Cleaning</h3>
+              <p class="service-item__desc">Degreasing and sanitizing all surfaces and countertops.</p>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-item__icon-wrap">
+              <span class="service-item__icon--text">+</span>
+            </div>
+            <div class="service-item__content">
+              <h3 class="service-item__title">Add-ons</h3>
+              <p class="service-item__desc">Oven, Fridge, Laundry Folding & more</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About / Why Choose Us Intro -->
+    <section id="why-choose-us" aria-labelledby="section-why-title" class="section-padding" style="background-color: var(--color-white);">
+      <div class="u-container u-grid" style="align-items: center;">
+        
+        <!-- Left: Before/After Slider -->
+        <div class="col-half" data-reveal>
+          <div class="ba-slider-wrap" style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="ba-slider" style="--reveal: 50%;">
+              <img src="assets/before-after/home-after.jpg" alt="Clean kitchen after cleaning" class="ba-slider__img js-ba-after" width="800" height="600" loading="lazy" />
+              <div class="ba-slider__after">
+                <img src="assets/before-after/home-before.jpg" alt="Dirty kitchen before cleaning" class="ba-slider__img js-ba-before" width="800" height="600" loading="lazy" />
+              </div>
+              <div class="ba-slider__handle">
+                <div class="ba-slider__handle-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"></polyline><polyline points="13 17 18 12 13 7"></polyline></svg>
+                </div>
+              </div>
+              <input type="range" min="0" max="100" value="50" class="ba-slider__range" aria-label="Compare before and after cleaning" />
+            </div>
+
+            <!-- Slider Pagination -->
+            <div class="ba-slider__nav" style="display: flex; justify-content: center; gap: 0.75rem;">
+              <button class="ba-slider__btn is-active" data-before="assets/before-after/home-before.jpg" data-after="assets/before-after/home-after.jpg" aria-label="View comparison 1">1</button>
+              <button class="ba-slider__btn" data-before="assets/before-after/home-before1.png" data-after="assets/before-after/home-after1.png" aria-label="View comparison 2">2</button>
+              <button class="ba-slider__btn" data-before="assets/before-after/home-before2.png" data-after="assets/before-after/home-after2.png" aria-label="View comparison 3">3</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Text Content -->
+        <div class="col-half" data-reveal="data-reveal-delay: 80" style="display: flex; flex-direction: column; justify-content: center;">
+          <div class="section-banner" style="text-align: left; margin-inline: 0;">
+            <div class="section-banner__eyebrow" style="color: var(--color-nav);">
+              <span class="section-banner__icon" aria-hidden="true" style="background: var(--color-nav);"></span>
+              About Cleaning Agency
+            </div>
+            <h2 id="section-why-title" class="section-banner__title">
+              <span style="font-weight: 800;">Why will you choose</span> 
+              <span style="font-weight: 500; opacity: 0.85;">our services?</span>
+            </h2>
+            <p class="section-banner__desc" style="margin-inline: 0;">
+              Expert cleaners who show up on time and get it right the first time. We treat your home with the care it deserves, leaving it spotless and refreshed. No complications, just the clean home you've been looking for.
+            </p>
+            <hr style="border: none; border-bottom: 1px solid var(--color-border); margin-top: 2.5rem; width: 100%;" />
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Trust Badges / Why Us Grid -->
+    <section id="trust-badges" aria-label="Why Choose Us Benefits" class="section-padding" style="background-color: var(--color-secondary);">
+      <div class="u-container u-grid">
+        
+        <!-- Badge 1 -->
+        <div class="col-half trust-badge" data-reveal>
+          <div class="trust-badge__icon-wrap">
+            <span class="trust-badge__icon" style="--icon: url('../assets/icons/why-us/cleaning-details.svg');"></span>
+          </div>
+          <div class="trust-badge__content">
+            <h3 class="trust-badge__title">Attention to Detail</h3>
+            <p class="trust-badge__desc">We don't just wipe surfaces. We follow a detailed checklist to ensure every corner, switch, and baseboard is spotless.</p>
+          </div>
+        </div>
+
+        <!-- Badge 2 -->
+        <div class="col-half trust-badge" data-reveal="data-reveal-delay: 80">
+          <div class="trust-badge__icon-wrap">
+            <span class="trust-badge__icon" style="--icon: url('../assets/icons/why-us/pet-safe.svg');"></span>
+          </div>
+          <div class="trust-badge__content">
+            <h3 class="trust-badge__title">Family & Pet Safe</h3>
+            <p class="trust-badge__desc">We use high-performance cleaning products that are effective yet safe for your kids, pets, and the environment.</p>
+          </div>
+        </div>
+
+        <!-- Badge 3 -->
+        <div class="col-half trust-badge" data-reveal>
+          <div class="trust-badge__icon-wrap">
+            <span class="trust-badge__icon" style="--icon: url('../assets/icons/why-us/trophy.svg');"></span>
+          </div>
+          <div class="trust-badge__content">
+            <h3 class="trust-badge__title">100% Satisfaction Guarantee</h3>
+            <p class="trust-badge__desc">Not happy with the results? Let us know within 24 hours, and we'll come back to re-clean for free. No questions asked.</p>
+          </div>
+        </div>
+
+        <!-- Badge 4 -->
+        <div class="col-half trust-badge" data-reveal="data-reveal-delay: 80">
+          <div class="trust-badge__icon-wrap">
+            <span class="trust-badge__icon" style="--icon: url('../assets/icons/why-us/vetted-professional.svg');"></span>
+          </div>
+          <div class="trust-badge__content">
+            <h3 class="trust-badge__title">Vetted Professionals</h3>
+            <p class="trust-badge__desc">Every team member undergoes a rigorous background check. Your safety and your home's security are our top priorities.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" aria-labelledby="section-how-title" class="section-padding" style="background-color: var(--color-surface); padding-bottom: 0;">
+      <div class="u-container">
+        
+        <div class="section-banner" data-reveal>
+          <div class="section-banner__eyebrow" style="color: var(--color-nav); justify-content: center;">
+            <span class="section-banner__icon" aria-hidden="true" style="background: var(--color-nav);"></span>
+            How It Work
+          </div>
+          <h2 id="section-how-title" class="section-banner__title">Your journey to a spotless home in 3 simple steps</h2>
+        </div>
+      </div>
+        
+      <div class="how-steps-wrap">
+        <div class="u-container" style="position: relative;">
+          <svg class="how-steps-curve" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M 0,100 Q 250,0 500,100 Q 750,0 1000,100" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="5" stroke-dasharray="12,14" stroke-linecap="round" />
+          </svg>
+
+          <div class="u-grid" style="position: relative; z-index: 1;">
+          <!-- Step 1 -->
+          <div class="col-third how-step" data-reveal>
+            <div class="how-step__icon-wrap">
+              <span class="how-step__icon" style="mask-image: url('../assets/icons/why-us/vetted-professional.svg'); -webkit-mask-image: url('../assets/icons/why-us/vetted-professional.svg');" aria-hidden="true"></span>
+              <span class="how-step__badge">1</span>
+            </div>
+            <h3 class="how-step__title">Find Us Fast Now</h3>
+            <div class="how-step__bar"></div>
+            <p class="how-step__desc">"Looking for a reliable cleaner? You've already found the best."</p>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="col-third how-step" data-reveal="data-reveal-delay: 80">
+            <div class="how-step__icon-wrap">
+              <span class="how-step__icon" style="mask-image: url('../assets/icons/services/cleaning-brush.svg'); -webkit-mask-image: url('../assets/icons/services/cleaning-brush.svg');" aria-hidden="true"></span>
+              <span class="how-step__badge">2</span>
+            </div>
+            <h3 class="how-step__title">Choose Services</h3>
+            <div class="how-step__bar"></div>
+            <p class="how-step__desc">From a quick standard clean to a deep scrub, pick the service that fits your needs.</p>
+          </div>
+          
+          <!-- Step 3 -->
+          <div class="col-third how-step" data-reveal="data-reveal-delay: 160">
+            <div class="how-step__icon-wrap">
+              <span class="how-step__icon" style="mask-image: url('../assets/icons/services/clock.svg'); -webkit-mask-image: url('../assets/icons/services/clock.svg');" aria-hidden="true"></span>
+              <span class="how-step__badge">3</span>
+            </div>
+            <h3 class="how-step__title">Book Appointment</h3>
+            <div class="how-step__bar"></div>
+            <p class="how-step__desc">Pick a time, book online, and relax. We'll handle the rest.</p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Text CTA Section -->
+    <section id="contact" class="section-padding" style="background-color: var(--color-white); text-align: center; padding-bottom: 1rem;">
+      <div class="u-container">
+        <div class="section-banner" data-reveal style="max-width: 100%; margin-inline: auto;">
+          <div class="section-banner__eyebrow" style="color: var(--color-nav); justify-content: center; font-weight: 700; text-transform: none; letter-spacing: normal;">
+            <span class="section-banner__icon" aria-hidden="true" style="background: var(--color-nav);"></span>
+            Ready for Professional House Cleaning in Orlando?
+          </div>
+          <h2 class="section-banner__title" style="color: var(--color-primary); font-weight: 800; font-size: clamp(1.25rem, 3vw, 2.2rem); line-height: var(--leading-tight); margin-top: 1rem;">
+            Book your Orlando cleaning service today Just text or call us<br class="u-hidden-mobile">
+            directly for residential, Airbnb, or office cleaning.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Call Banners -->
+    <section id="contact-banners" style="padding-top: 1rem; padding-bottom: clamp(3rem, 8vw, 6rem); background-color: var(--color-white); position: relative; z-index: 1; overflow: hidden;">
+      <!-- Subtle dot pattern background -->
+      <div style="position: absolute; top: 0; left: 0; width: 400px; height: 100%; background-image: radial-gradient(var(--color-secondary) 2px, transparent 2px); background-size: 16px 16px; opacity: 0.4; z-index: -1; mask-image: radial-gradient(circle at left center, black 20%, transparent 70%); -webkit-mask-image: radial-gradient(circle at left center, black 20%, transparent 70%); pointer-events: none;"></div>
+      
+      <div class="u-container" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- Banner 1: WhatsApp -->
+        <div class="appointment-banner" data-reveal>
+          <h2 class="appointment-banner__title">Text Us on WhatsApp for a Quick Chat!</h2>
+          <a href="https://wa.me/14078616418" class="btn btn--cta appointment-banner__btn" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink: 0; margin-right: 8px;">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+            </svg>
+            CHAT ON WHATSAPP
+          </a>
+        </div>
+
+        <!-- Banner 2: Call Us -->
+        <div class="appointment-banner appointment-banner--wave" data-reveal="data-reveal-delay: 80">
+          <!-- Curved reflection graphic inside banner -->
+          <div class="appointment-banner__bg-curve"></div>
+          
+          <h2 class="appointment-banner__title appointment-banner__title--alt">Please Call Us to Take an Extraordinary Service!</h2>
+          <a href="tel:+14078616418" class="btn btn--cta appointment-banner__btn appointment-banner__btn--alt">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink: 0;">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+            +1 (407) 861-6418
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section-padding" style="background-color: var(--color-surface); position: relative; overflow: hidden; z-index: 1;">
+      <!-- Dot pattern background -->
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(rgba(0,0,0,0.06) 2px, transparent 2px); background-size: 24px 24px; z-index: -1;"></div>
+
+      <!-- Floating avatars (fixed sizes and positions) -->
+      <div class="testimonial-float" style="top: 25%; left: 5%; width: 70px; height: 70px; background-image: url('assets/testimonials/testimonial-02.jpg');"></div>
+      <div class="testimonial-float" style="top: 70%; left: 18%; width: 45px; height: 45px; background-image: url('assets/testimonials/testimonial-03.jpg');"></div>
+      <div class="testimonial-float" style="top: 30%; right: 8%; width: 60px; height: 60px; background-image: url('assets/testimonials/testimonial-04.jpg');"></div>
+      <div class="testimonial-float" style="top: 75%; right: 15%; width: 50px; height: 50px; background-image: url('assets/testimonials/testimonial-05.jpg');"></div>
+
+      <div class="u-container">
+        <div class="section-banner" data-reveal>
+          <div class="section-banner__eyebrow" style="color: var(--color-nav); justify-content: center;">
+            ......... Testimonial ........
+          </div>
+          <h2 class="section-banner__title" style="color: var(--color-primary); font-size: var(--text-h1); font-weight: 800;">
+            What They Are Talking
+          </h2>
+          <p class="section-banner__desc">
+            There is no better feeling than walking into a home that sparkles. We take pride in the smiles we leave behind and the trust our clients place in us every single day.
+          </p>
+        </div>
+
+        <div class="testimonial-slider-wrap" data-reveal="data-reveal-delay: 100">
+          <div class="testimonial-slider" data-testimonial-slider>
+            
+            <!-- Slide 1 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-card__avatar">
+                  <img src="assets/testimonials/testimonial-02.jpg" alt="Sarah Jenkins" width="90" height="90" loading="lazy">
+                </div>
+                <p class="testimonial-card__text">We use Skyline for our short-term rental property and they never miss a beat. Their turnovers are quick and the quality is consistent every single time.</p>
+                <h4 class="testimonial-card__name">Sarah Jenkins</h4>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-card__avatar">
+                  <img src="assets/testimonials/testimonial-03.jpg" alt="Laiza French" width="90" height="90" loading="lazy">
+                </div>
+                <p class="testimonial-card__text">So easy to book, and my house looked amazing. I didn't have to worry about anything.</p>
+                <h4 class="testimonial-card__name">Laiza French</h4>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-card__avatar">
+                  <img src="assets/testimonials/testimonial-04.jpg" alt="Jhon Smith" width="90" height="90" loading="lazy">
+                </div>
+                <p class="testimonial-card__text">I've tried several cleaning services in Orlando, but Skyline is on another level. They are professional, punctual, and my house has never looked this good.</p>
+                <h4 class="testimonial-card__name">Jhon Smith</h4>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-card__avatar">
+                  <img src="assets/testimonials/testimonial-05.jpg" alt="Emily Davis" width="90" height="90" loading="lazy">
+                </div>
+                <p class="testimonial-card__text">Absolutely wonderful! They paid attention to details I didn't even know were dirty. Highly recommended for any homeowner.</p>
+                <h4 class="testimonial-card__name">Emily Davis</h4>
+              </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-card__avatar">
+                  <img src="assets/testimonials/testimonial-06.jpg" alt="Michael Brown" width="90" height="90" loading="lazy">
+                </div>
+                <p class="testimonial-card__text">Fast, reliable, and super friendly staff. Coming home to a clean house is the highlight of my week.</p>
+                <h4 class="testimonial-card__name">Michael Brown</h4>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Slider Dots -->
+          <div class="testimonial-dots" data-testimonial-dots></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo" class="main-footer" style="background-color: var(--color-secondary); color: var(--color-text); position: relative; z-index: 2;">
+    <div class="u-container main-footer__inner">
+      
+      <!-- Top CTA Header -->
+      <div style="text-align: center; margin-bottom: 2.5rem; background-color: #ffffff; padding: 2rem; border-radius: var(--card-radius); box-shadow: var(--shadow-sm);" data-reveal>
+        <h3 style="font-size: var(--text-h3); font-weight: var(--weight-medium); color: var(--color-primary); line-height: 1.3; margin: 0;">
+          Your trusted local experts for a healthier, cleaner home. We take the stress out of housework so you can focus on what matters most in Orlando.
+        </h3>
+      </div>
+
+      <!-- 3 Columns Row -->
+      <div class="u-grid main-footer__grid" style="margin-bottom: 25px;" data-reveal="data-reveal-delay: 80">
+        
+        <!-- Column 1: Official Info -->
+        <div class="footer-col footer-col--left">
+          <h3 class="footer-title" style="color: var(--color-text);">Official info</h3>
+          <ul class="footer-contact" style="color: rgba(63,63,63,0.8); line-height: 1.1; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li>
+              <span class="footer-contact__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <span>Orlando, FL</span>
+            </li>
+            <li>
+              <span class="footer-contact__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <a href="tel:+14078616418" style="color: inherit;">+1 (407) 861-6418</a>
+            </li>
+            <li>
+              <span class="footer-contact__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <a href="mailto:hi@skylinehomecleaning.net" style="color: inherit;">hi@skylinehomecleaning.net</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Empty Spacer -->
+        <div class="footer-col">
+        </div>
+
+        <!-- Column 3: Follow Us -->
+        <div class="footer-col footer-col--right">
+          <h2 class="footer-title" style="color: var(--color-text);">Follow Us</h2>
+          <p style="color: rgba(63,63,63,0.8); line-height: 1.1; margin-bottom: 1rem;">
+            Join us on social media for exclusive offers and a behind-the-scenes look at how we make every home spotless.
+          </p>
+          <div class="footer-socials" style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+            <a href="#" aria-label="Follow us on Facebook" class="footer-social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="Follow us on Instagram" class="footer-social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div> <!-- /main-footer__inner -->
+
+    <!-- Bottom CTA Box (Full Width) -->
+    <div style="background-color: #ffffff; padding: 20px 0; margin-bottom: 17px; position: relative;" data-reveal="data-reveal-delay: 160">
+      
+      <button class="back-to-top back-to-top--light" aria-label="Scroll to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="bottom: 100%; right: 28px; transform: translateY(1px);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+      </button>
+
+      <div class="u-container">
+        <h2 style="text-align: center; color: var(--color-nav); font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 800; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: -0.5px;">
+          REQUEST YOUR QUOTE NOW WITH NO OBLIGATION OR COMMITMENT!
+        </h2>
+        
+        <div class="cta-action-row" style="text-align: center;">
+          <a href="appointment.html" class="btn btn--cta">I WANT A QUOTE NOW</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="u-container">
+      <div class="footer-bottom" style="color: rgba(63,63,63,0.6); text-align: left; padding-bottom: 17px; font-size: 12px;">
+        <p style="margin: 0; width: 100%; text-align: center;">skylinehomecleaning.net - Todos os direitos reservados</p>
+      </div>
+    </div>
+  </footer>
+  <!-- JS Layer -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

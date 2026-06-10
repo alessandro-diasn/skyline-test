@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Skyline Home Cleaning — System Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --primary: #F79ECA;
+    --secondary: #B0D9C7;
+    --cta: #FFD532;
+    --nav-bg: #4B7CF9;
+    --font-dark: #3f3f3f;
+    --font-white: #FFFFFF;
+    --contrast: #8224E3;
+    --bg: #f9f9fb;
+    --card-bg: #fff;
+    --border: #e8e8ef;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg);
+    color: var(--font-dark);
+    line-height: 1.65;
+  }
+
+  /* ─── TOP BAR ─── */
+  .topbar {
+    background: var(--nav-bg);
+    color: #fff;
+    padding: 10px 48px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ─── SIDEBAR NAV ─── */
+  .layout { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: 240px;
+    background: #fff;
+    border-right: 1px solid var(--border);
+    padding: 32px 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .sidebar h2 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #aaa;
+    padding: 0 24px 8px;
+    margin-top: 24px;
+  }
+  .sidebar h2:first-child { margin-top: 0; }
+
+  .sidebar a {
+    display: block;
+    padding: 8px 24px;
+    font-size: 14px;
+    color: var(--font-dark);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all .15s;
+  }
+  .sidebar a:hover { background: #f4f4f8; border-left-color: var(--primary); color: var(--contrast); }
+
+  /* ─── MAIN CONTENT ─── */
+  .main { flex: 1; padding: 48px 56px; max-width: 1100px; }
+
+  /* ─── PAGE TITLE ─── */
+  .page-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--font-dark);
+    margin-bottom: 6px;
+  }
+  .page-subtitle { font-size: 16px; color: #888; margin-bottom: 48px; }
+
+  /* ─── SECTIONS ─── */
+  .section { margin-bottom: 64px; scroll-margin-top: 24px; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--nav-bg);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--font-dark);
+    margin-bottom: 6px;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: #666;
+    max-width: 680px;
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 2px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  /* ─── COLOR SWATCHES ─── */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+
+  .swatch {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+
+  .swatch-color { height: 80px; }
+
+  .swatch-info { padding: 12px 14px; }
+
+  .swatch-name { font-size: 13px; font-weight: 700; color: var(--font-dark); }
+
+  .swatch-hex {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    color: #999;
+    margin-top: 2px;
+  }
+
+  .swatch-role {
+    font-size: 11px;
+    color: #bbb;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* ─── TYPE SCALE ─── */
+  .type-table { width: 100%; border-collapse: collapse; }
+  .type-table th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #aaa;
+    border-bottom: 2px solid var(--border);
+    padding: 0 0 10px;
+  }
+  .type-table td {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .type-table td:first-child { width: 100px; }
+  .type-table td:nth-child(2) { width: 140px; }
+  .type-table td:nth-child(3) { width: 80px; }
+  .type-table td:nth-child(4) { padding-right: 24px; }
+
+  .type-tag {
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    background: #f0f0f6;
+    color: var(--contrast);
+    border-radius: 4px;
+    padding: 3px 8px;
+  }
+
+  .type-meta { font-size: 12px; color: #999; font-family: 'Roboto Mono', monospace; }
+
+  /* ─── TYPE PREVIEWS ─── */
+  .type-preview-h1 { font-size: 49px; font-weight: 800; color: var(--font-dark); line-height: 1.1; }
+  .type-preview-h2 { font-size: 38px; font-weight: 800; color: var(--font-dark); line-height: 1.15; }
+  .type-preview-h3 { font-size: 22px; font-weight: 500; color: var(--font-dark); line-height: 1.3; }
+  .type-preview-body-lg { font-size: 17px; font-weight: 400; color: var(--font-dark); line-height: 1.65; }
+  .type-preview-body { font-size: 15px; font-weight: 400; color: #555; line-height: 1.7; }
+  .type-preview-caption { font-size: 12px; font-weight: 500; color: #999; letter-spacing: .06em; text-transform: uppercase; }
+
+  /* ─── COMPONENT CARDS ─── */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .comp-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+
+  .comp-card h4 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-bottom: 16px;
+  }
+
+  /* Buttons */
+  .btn-group { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    letter-spacing: .03em;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,.12); }
+
+  .btn-cta { background: var(--cta); color: var(--font-dark); }
+  .btn-primary { background: var(--primary); color: var(--font-dark); }
+  .btn-nav { background: var(--nav-bg); color: #fff; }
+  .btn-outline { background: transparent; color: var(--font-dark); border: 2px solid var(--font-dark); }
+  .btn-ghost { background: transparent; color: var(--nav-bg); border: 2px solid var(--nav-bg); }
+  .btn-contrast { background: var(--contrast); color: #fff; }
+  .btn-sm { padding: 8px 18px; font-size: 12px; }
+
+  /* Nav preview */
+  .nav-preview {
+    background: var(--nav-bg);
+    border-radius: 10px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .nav-logo-box {
+    background: #fff;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: .05em;
+  }
+  .nav-links { display: flex; gap: 20px; }
+  .nav-links a { color: rgba(255,255,255,.85); font-size: 13px; text-decoration: none; font-weight: 500; }
+  .nav-links a:hover { color: #fff; }
+
+  /* Hero preview */
+  .hero-preview {
+    background: var(--primary);
+    border-radius: 12px;
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    background: var(--secondary);
+    color: var(--font-dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  .hero-h1 { font-size: 36px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 14px; }
+  .hero-body { font-size: 16px; color: rgba(255,255,255,.88); margin-bottom: 24px; max-width: 420px; line-height: 1.65; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* Service cards */
+  .service-card {
+    background: var(--primary);
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .service-icon-wrap {
+    width: 64px; height: 64px;
+    background: rgba(255,255,255,.25);
+    border-radius: 50%;
+    border: 2px dashed rgba(255,255,255,.5);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 26px;
+  }
+  .service-card h3 { font-size: 18px; font-weight: 700; color: var(--nav-bg); margin-bottom: 8px; }
+  .service-card .bar { width: 32px; height: 3px; background: var(--nav-bg); border-radius: 2px; margin: 8px auto; }
+  .service-card p { font-size: 14px; color: var(--font-dark); line-height: 1.6; }
+
+  /* Trust badges */
+  .trust-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .trust-icon {
+    width: 44px; height: 44px;
+    background: var(--primary);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .trust-card h4 { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .trust-card p { font-size: 13px; color: #666; line-height: 1.55; }
+
+  /* CTA banner */
+  .cta-banner {
+    background: var(--primary);
+    border-radius: 14px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .cta-banner p { font-size: 20px; font-weight: 800; color: #fff; }
+  .cta-banner span { font-size: 14px; font-weight: 400; color: rgba(255,255,255,.8); display: block; margin-top: 4px; }
+
+  /* Footer preview */
+  .footer-preview {
+    background: var(--secondary);
+    border-radius: 14px;
+    padding: 36px 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+  .footer-preview h4 { font-size: 15px; font-weight: 700; color: var(--font-dark); margin-bottom: 14px; border-bottom: 2px solid var(--cta); padding-bottom: 8px; display: inline-block; }
+  .footer-preview p, .footer-preview a { font-size: 13px; color: #555; display: block; text-decoration: none; line-height: 2; }
+  .social-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 50%;
+    font-size: 14px; color: #fff; margin-right: 8px; margin-top: 6px;
+  }
+  .fb { background: #3b5998; }
+  .ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+  /* ─── WIREFRAMES ─── */
+  .wireframe-box {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .wf-label {
+    background: #f4f4f8;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+  .wf-inner { padding: 24px; }
+
+  /* wireframe blocks */
+  .wf-nav {
+    background: var(--nav-bg);
+    height: 56px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .wf-logo { background: #fff; width: 80px; height: 36px; border-radius: 4px; }
+  .wf-links { display: flex; gap: 12px; margin-left: auto; }
+  .wf-link { background: rgba(255,255,255,.3); width: 60px; height: 10px; border-radius: 3px; }
+  .wf-btn-nav { background: var(--cta); width: 90px; height: 28px; border-radius: 20px; }
+
+  .wf-hero {
+    background: var(--primary);
+    border-radius: 6px;
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+  .wf-text-block { }
+  .wf-eyebrow { background: var(--secondary); height: 14px; width: 160px; border-radius: 3px; margin-bottom: 12px; }
+  .wf-h1-block { background: rgba(255,255,255,.7); height: 22px; border-radius: 3px; margin-bottom: 8px; width: 90%; }
+  .wf-h1-block2 { background: rgba(255,255,255,.7); height: 22px; border-radius: 3px; margin-bottom: 16px; width: 70%; }
+  .wf-body-block { background: rgba(255,255,255,.4); height: 10px; border-radius: 3px; margin-bottom: 6px; }
+  .wf-body-block2 { background: rgba(255,255,255,.4); height: 10px; border-radius: 3px; margin-bottom: 16px; width: 75%; }
+  .wf-actions { display: flex; gap: 10px; }
+  .wf-btn-hero { background: var(--secondary); height: 32px; width: 100px; border-radius: 20px; }
+  .wf-btn-hero2 { background: transparent; border: 2px solid rgba(255,255,255,.5); height: 32px; width: 120px; border-radius: 20px; }
+  .wf-image-ph { background: rgba(255,255,255,.2); border-radius: 8px; height: 140px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.5); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+
+  .wf-section {
+    background: #f9f9fb;
+    border-radius: 6px;
+    padding: 24px;
+    margin-bottom: 8px;
+  }
+  .wf-section-title { background: #ccc; height: 18px; width: 200px; border-radius: 3px; margin: 0 auto 20px; }
+  .wf-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .wf-card { background: var(--primary); border-radius: 8px; padding: 16px; }
+  .wf-card-icon { background: rgba(255,255,255,.3); width: 36px; height: 36px; border-radius: 50%; margin: 0 auto 10px; }
+  .wf-card-title { background: rgba(255,255,255,.6); height: 10px; width: 70%; border-radius: 3px; margin: 0 auto 8px; }
+  .wf-card-body { background: rgba(255,255,255,.35); height: 8px; border-radius: 3px; margin-bottom: 4px; }
+  .wf-card-body2 { background: rgba(255,255,255,.35); height: 8px; border-radius: 3px; width: 80%; }
+
+  .wf-services-layout { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; }
+  .wf-service-list { display: flex; flex-direction: column; gap: 8px; }
+  .wf-service-item { background: rgba(255,255,255,.6); border-radius: 6px; padding: 10px; display: flex; gap: 8px; align-items: center; }
+  .wf-si-icon { background: #ccc; width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; }
+  .wf-si-text { flex: 1; }
+  .wf-si-t { background: #bbb; height: 8px; border-radius: 3px; margin-bottom: 4px; }
+  .wf-si-d { background: #ddd; height: 6px; border-radius: 3px; width: 70%; }
+  .wf-center-img { background: var(--nav-bg); width: 100px; height: 140px; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.5); font-size: 10px; text-align: center; }
+
+  .wf-trust { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .wf-trust-item { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px; display: flex; gap: 10px; }
+  .wf-ti-icon { background: var(--primary); width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; }
+  .wf-ti-text { flex: 1; }
+  .wf-ti-t { background: var(--primary); opacity: .5; height: 8px; border-radius: 3px; margin-bottom: 4px; width: 60%; }
+  .wf-ti-d { background: #eee; height: 6px; border-radius: 3px; margin-bottom: 3px; }
+
+  .wf-cta-bar { background: var(--primary); border-radius: 8px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .wf-cta-text { }
+  .wf-cta-t { background: rgba(255,255,255,.7); height: 14px; width: 220px; border-radius: 3px; margin-bottom: 6px; }
+  .wf-cta-d { background: rgba(255,255,255,.4); height: 9px; width: 160px; border-radius: 3px; }
+  .wf-cta-btn { background: var(--cta); height: 36px; width: 130px; border-radius: 20px; }
+
+  .wf-footer { background: var(--secondary); border-radius: 8px; padding: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .wf-footer-col .wf-fc-logo { background: #fff; width: 60px; height: 40px; border-radius: 4px; margin-bottom: 8px; }
+  .wf-footer-col .wf-fc-line { background: rgba(0,0,0,.15); height: 7px; border-radius: 3px; margin-bottom: 5px; }
+  .wf-footer-col .wf-fc-line2 { background: rgba(0,0,0,.1); height: 7px; border-radius: 3px; margin-bottom: 5px; width: 70%; }
+  .wf-footer-col .wf-fc-title { background: rgba(0,0,0,.25); height: 10px; border-radius: 3px; width: 80px; margin-bottom: 10px; }
+  .wf-socials { display: flex; gap: 6px; margin-top: 8px; }
+  .wf-social-dot { background: rgba(0,0,0,.2); width: 24px; height: 24px; border-radius: 50%; }
+
+  /* ─── SPACING ─── */
+  .spacing-grid { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+  .sp-item { text-align: center; }
+  .sp-box { background: var(--primary); border-radius: 4px; margin: 0 auto 6px; }
+  .sp-label { font-size: 11px; font-family: 'Roboto Mono', monospace; color: #888; }
+
+  /* ─── ICONS & STATES ─── */
+  .state-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+  .state-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .state-default { background: #f0f0f6; color: #555; }
+  .state-active { background: var(--cta); color: var(--font-dark); }
+  .state-success { background: var(--secondary); color: var(--font-dark); }
+  .state-error { background: #FFE0E0; color: #C0392B; }
+  .state-disabled { background: #eee; color: #bbb; }
+
+  /* ─── INPUT FIELDS ─── */
+  .input-preview {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: var(--font-dark);
+    outline: none;
+    margin-bottom: 10px;
+    transition: border-color .15s;
+  }
+  .input-preview:focus { border-color: var(--nav-bg); }
+  .input-label { font-size: 12px; font-weight: 700; color: #888; margin-bottom: 4px; letter-spacing: .06em; text-transform: uppercase; }
+
+  /* ─── SECTION BG VARIANTS ─── */
+  .bg-white { background: #fff; }
+  .bg-primary { background: var(--primary); }
+  .bg-secondary { background: var(--secondary); }
+  .bg-nav { background: var(--nav-bg); }
+  .bg-dark { background: var(--font-dark); }
+
+  .bg-swatch {
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  /* ─── ANIMATION NOTES ─── */
+  .anim-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .anim-card strong { color: var(--nav-bg); }
+
+  /* ─── GRID SYSTEM ─── */
+  .grid-demo { display: grid; gap: 12px; margin-bottom: 12px; }
+  .grid-col { background: var(--primary); border-radius: 4px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: rgba(255,255,255,.8); }
+
+  /* ─── RESPONSIVE NOTES ─── */
+  .resp-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .resp-table th { background: #f4f4f8; padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #aaa; }
+  .resp-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .resp-table tr:last-child td { border-bottom: none; }
+  .tag { display: inline-block; background: #f0f0f6; color: var(--contrast); font-size: 11px; padding: 2px 8px; border-radius: 4px; font-family: 'Roboto Mono', monospace; }
+
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { padding: 32px 24px; }
+    .page-title { font-size: 28px; }
+    .footer-preview, .wf-footer { grid-template-columns: 1fr; }
+    .wf-cards { grid-template-columns: 1fr; }
+    .wf-trust { grid-template-columns: 1fr; }
+    .wf-services-layout { grid-template-columns: 1fr; }
+    .wf-center-img { display: none; }
+    .comp-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">Skyline Home Cleaning — System Design & Style Guide</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <h2>Foundation</h2>
+    <a href="#colors">Color Palette</a>
+    <a href="#typography">Typography</a>
+    <a href="#spacing">Spacing & Grid</a>
+    <a href="#backgrounds">Background Variants</a>
+
+    <h2>Components</h2>
+    <a href="#nav">Navigation</a>
+    <a href="#buttons">Buttons & CTAs</a>
+    <a href="#inputs">Form Inputs</a>
+    <a href="#cards-service">Service Cards</a>
+    <a href="#cards-trust">Trust Badges</a>
+    <a href="#cta-banner">CTA Banner</a>
+    <a href="#footer-comp">Footer</a>
+    <a href="#states">States & Feedback</a>
+
+    <h2>Pages</h2>
+    <a href="#wireframe-home">Home Wireframe</a>
+    <a href="#responsive">Responsive Rules</a>
+    <a href="#animation">Motion & Animation</a>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <p class="page-subtitle" style="font-size:13px;color:#aaa;margin-bottom:4px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;">SYSTEM DESIGN v1.0</p>
+    <h1 class="page-title">Skyline Home Cleaning</h1>
+    <p class="page-subtitle">Design tokens, components, layout wireframes, and interaction guidelines for the full website.</p>
+
+    <!-- ── COLORS ── -->
+    <section class="section" id="colors">
+      <p class="section-label">Foundation · 01</p>
+      <h2 class="section-title">Color Palette</h2>
+      <p class="section-desc">Six tokens form the entire visual language. Primary pink drives warmth and brand recognition; secondary mint provides breathing room and contrast; CTA yellow creates urgency; nav blue anchors trust; contrast purple is used sparingly for micro-accents only.</p>
+      <hr class="divider"/>
+
+      <div class="color-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#F79ECA;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Primary</div>
+            <div class="swatch-hex">#F79ECA</div>
+            <div class="swatch-role">Hero bg, service cards, CTA section bg, icon wrappers</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#B0D9C7;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Secondary</div>
+            <div class="swatch-hex">#B0D9C7</div>
+            <div class="swatch-role">Footer bg, eyebrow tags, section accents, success states</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FFD532;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">CTA / Buttons</div>
+            <div class="swatch-hex">#FFD532</div>
+            <div class="swatch-role">Primary CTA buttons, phone badge, urgency elements</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#4B7CF9;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Nav / Header</div>
+            <div class="swatch-hex">#4B7CF9</div>
+            <div class="swatch-role">Navbar bg, card titles, section labels, link accents</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#3f3f3f;border:1px solid #ddd;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Font Dark</div>
+            <div class="swatch-hex">#3f3f3f</div>
+            <div class="swatch-role">Body text, headings on light bg, nav labels</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#ffffff;border:1px solid #eee;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Font White</div>
+            <div class="swatch-hex">#FFFFFF</div>
+            <div class="swatch-role">Text on nav, text on pink bg, text on contrast purple</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#8224E3;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Contrast</div>
+            <div class="swatch-hex">#8224E3</div>
+            <div class="swatch-role">Use sparingly: hover accents, sidebar active, special labels</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Usage rules -->
+      <div style="margin-top:24px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;">
+        <p style="font-size:13px;font-weight:700;color:#aaa;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;">Usage Rules</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div style="font-size:13px;color:#555;line-height:1.7;">
+            <strong style="color:var(--font-dark);">✅ Do</strong><br>
+            Use <code style="background:#f0f0f6;padding:1px 5px;border-radius:3px;">#FFD532</code> only for primary CTA buttons<br>
+            Pair pink bg with <code style="background:#f0f0f6;padding:1px 5px;border-radius:3px;">#fff</code> or <code style="background:#f0f0f6;padding:1px 5px;border-radius:3px;">#3f3f3f</code> text<br>
+            Use mint/secondary for footer and eyebrow tags<br>
+            Keep #8224E3 to ≤ 5% of any page view
+          </div>
+          <div style="font-size:13px;color:#555;line-height:1.7;">
+            <strong style="color:var(--font-dark);">❌ Don't</strong><br>
+            Use CTA yellow as a background color for sections<br>
+            Place white text on mint/secondary backgrounds<br>
+            Use more than 3 colors in a single component<br>
+            Use contrast purple for large text blocks
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TYPOGRAPHY ── -->
+    <section class="section" id="typography">
+      <p class="section-label">Foundation · 02</p>
+      <h2 class="section-title">Typography Scale</h2>
+      <p class="section-desc">Roboto is used exclusively across all roles. Weight and size create clear hierarchy — no other typeface family is introduced.</p>
+      <hr class="divider"/>
+
+      <table class="type-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Role</th>
+            <th>Size / Weight</th>
+            <th>Preview</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="type-tag">H1</span></td>
+            <td><span class="type-meta">Hero Headline</span></td>
+            <td><span class="type-meta">49px / 800<br>LH 1.1</span></td>
+            <td><div class="type-preview-h1">Clean Home.</div></td>
+          </tr>
+          <tr>
+            <td><span class="type-tag">H2</span></td>
+            <td><span class="type-meta">Section Title</span></td>
+            <td><span class="type-meta">49px / 800<br>LH 1.15</span></td>
+            <td><div class="type-preview-h2">Our Services</div></td>
+          </tr>
+          <tr>
+            <td><span class="type-tag">H3</span></td>
+            <td><span class="type-meta">Card / Sub Title</span></td>
+            <td><span class="type-meta">22px / 500<br>LH 1.3</span></td>
+            <td><div class="type-preview-h3">Deep Cleaning</div></td>
+          </tr>
+          <tr>
+            <td><span class="type-tag">Body LG</span></td>
+            <td><span class="type-meta">Hero & CTA copy</span></td>
+            <td><span class="type-meta">17–18px / 400<br>LH 1.65</span></td>
+            <td><div class="type-preview-body-lg">Professional cleaning you can trust, so you can spend your time on what truly matters.</div></td>
+          </tr>
+          <tr>
+            <td><span class="type-tag">Body</span></td>
+            <td><span class="type-meta">Card descriptions</span></td>
+            <td><span class="type-meta">15–16px / 400<br>LH 1.7</span></td>
+            <td><div class="type-preview-body">A top-to-bottom scrub that tackles hidden dust and grime in hard-to-reach spots for a truly refreshing feel.</div></td>
+          </tr>
+          <tr>
+            <td><span class="type-tag">Caption</span></td>
+            <td><span class="type-meta">Labels, eyebrows</span></td>
+            <td><span class="type-meta">11–12px / 500–700<br>Uppercase + tracking</span></td>
+            <td><div class="type-preview-caption">Welcome to Skyline Home Cleaning</div></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:24px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;">
+        <p style="font-size:13px;font-weight:700;color:#aaa;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;">Type Rules</p>
+        <div style="font-size:13px;color:#555;line-height:1.85;columns:2;gap:32px;">
+          <div>H1/H2 are always 800 weight — never medium for these sizes.</div>
+          <div>Avoid italic across the site; use weight contrast instead.</div>
+          <div>Body text max width: <strong>660px</strong> (65 characters) for readability.</div>
+          <div>H3 on pink background: use <code style="background:#f0f0f6;padding:1px 5px;border-radius:3px;">#4B7CF9</code> (nav blue) color.</div>
+          <div>Mobile: H1 reduces to 32px, H2 to 28px, line-height tightens to 1.05.</div>
+          <div>Eyebrow labels: always uppercase + letter-spacing .12em.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SPACING ── -->
+    <section class="section" id="spacing">
+      <p class="section-label">Foundation · 03</p>
+      <h2 class="section-title">Spacing & Grid</h2>
+      <p class="section-desc">An 8px base unit drives all spacing decisions. Section padding is generous on desktop to create breathing room between pink sections.</p>
+      <hr class="divider"/>
+
+      <div class="spacing-grid">
+        <div class="sp-item"><div class="sp-box" style="width:8px;height:8px;"></div><div class="sp-label">4px<br>xs</div></div>
+        <div class="sp-item"><div class="sp-box" style="width:16px;height:16px;"></div><div class="sp-label">8px<br>sm</div></div>
+        <div class="sp-item"><div class="sp-box" style="width:24px;height:24px;"></div><div class="sp-label">12px<br>—</div></div>
+        <div class="sp-item"><div class="sp-box" style="width:32px;height:32px;"></div><div class="sp-label">16px<br>md</div></div>
+        <div class="sp-item"><div class="sp-box" style="width:48px;height:48px;"></div><div class="sp-label">24px<br>—</div></div>
+        <div class="sp-item"><div class="sp-box" style="width:64px;height:64px;"></div><div class="sp-label">32px<br>lg</div></div>
+        <div class="sp-item"><div class="sp-box" style="width:80px;height:80px;"></div><div class="sp-label">48px<br>xl</div></div>
+        <div class="sp-item"><div class="sp-box" style="width:96px;height:96px;"></div><div class="sp-label">64px<br>section</div></div>
+        <div class="sp-item"><div class="sp-box" style="width:112px;height:112px;"></div><div class="sp-label">80px<br>hero</div></div>
+      </div>
+
+      <div style="margin-top:28px;">
+        <p style="font-size:13px;font-weight:700;color:#aaa;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;">Column Grid</p>
+        <div style="font-size:13px;color:#555;margin-bottom:12px;">12-column grid · max-width: <strong>1280px</strong> · gutter: <strong>24px</strong> · side padding: <strong>48px desktop / 24px mobile</strong></div>
+
+        <div class="grid-demo" style="grid-template-columns:repeat(12,1fr);">
+          <div class="grid-col" style="grid-column:span 12;">12 col — Full width (nav, hero)</div>
+        </div>
+        <div class="grid-demo" style="grid-template-columns:repeat(12,1fr);">
+          <div class="grid-col" style="grid-column:span 6;">6 col</div>
+          <div class="grid-col" style="grid-column:span 6;">6 col (hero 50/50 split)</div>
+        </div>
+        <div class="grid-demo" style="grid-template-columns:repeat(12,1fr);">
+          <div class="grid-col" style="grid-column:span 4;">4 col</div>
+          <div class="grid-col" style="grid-column:span 4;">4 col</div>
+          <div class="grid-col" style="grid-column:span 4;">4 col — (3-card rows)</div>
+        </div>
+        <div class="grid-demo" style="grid-template-columns:repeat(12,1fr);">
+          <div class="grid-col" style="grid-column:span 3;">3</div>
+          <div class="grid-col" style="grid-column:span 6;">6 — (services central layout)</div>
+          <div class="grid-col" style="grid-column:span 3;">3</div>
+        </div>
+        <div class="grid-demo" style="grid-template-columns:repeat(12,1fr);">
+          <div class="grid-col" style="grid-column:span 6;">6</div>
+          <div class="grid-col" style="grid-column:span 6;">6 — (trust cards 2×2)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BACKGROUNDS ── -->
+    <section class="section" id="backgrounds">
+      <p class="section-label">Foundation · 04</p>
+      <h2 class="section-title">Section Background Variants</h2>
+      <p class="section-desc">Sections alternate background to create rhythm and prevent visual fatigue. Never stack two pink sections consecutively.</p>
+      <hr class="divider"/>
+
+      <div class="bg-swatch bg-white" style="color:var(--font-dark);border:1px solid var(--border);">
+        <strong>White / #FFFFFF</strong> — Trust badges section, About Us, default fallback
+      </div>
+      <div class="bg-swatch bg-primary" style="color:var(--font-dark);">
+        <strong>Primary Pink / #F79ECA</strong> — Hero, Service Cards section, CTA Banner
+      </div>
+      <div class="bg-swatch bg-secondary" style="color:var(--font-dark);">
+        <strong>Secondary Mint / #B0D9C7</strong> — Footer, "Why Choose Us" band
+      </div>
+      <div class="bg-swatch" style="background:#f9f9fb;color:var(--font-dark);border:1px solid var(--border);">
+        <strong>Surface / #F9F9FB</strong> — Services detail section, alternate backgrounds
+      </div>
+      <div class="bg-swatch bg-nav" style="color:#fff;">
+        <strong>Nav Blue / #4B7CF9</strong> — Navbar only. Accent use in icon borders.
+      </div>
+
+      <div style="margin-top:16px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <p style="font-size:12px;font-weight:700;color:#aaa;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">Recommended Section Sequence (top → bottom)</p>
+        <div style="font-size:13px;color:#555;line-height:2;">
+          1. Navbar → <span class="tag">#4B7CF9</span><br>
+          2. Hero → <span class="tag">#F79ECA</span><br>
+          3. Services Cards → <span class="tag">#F79ECA</span> (same, continuous)<br>
+          4. Services Detail → <span class="tag">#F9F9FB</span><br>
+          5. Why Choose Us → <span class="tag">#FFFFFF</span><br>
+          6. CTA Banner → <span class="tag">#F79ECA</span><br>
+          7. Appointment / Contact → <span class="tag">#FFFFFF</span><br>
+          8. Footer → <span class="tag">#B0D9C7</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── NAV ── -->
+    <section class="section" id="nav">
+      <p class="section-label">Component · 01</p>
+      <h2 class="section-title">Navigation Bar</h2>
+      <p class="section-desc">Sticky header. Logo overflows below navbar on desktop (as in original design). Nav links in white. CTA button in yellow at far right.</p>
+      <hr class="divider"/>
+
+      <div class="comp-card">
+        <h4>Desktop — sticky, 70px height</h4>
+        <div class="nav-preview">
+          <div class="nav-logo-box">Skyline ✨</div>
+          <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Appointment</a>
+            <a href="#">Services</a>
+          </div>
+          <button class="btn btn-cta btn-sm">Appointment</button>
+        </div>
+        <div style="margin-top:16px;font-size:13px;color:#888;line-height:1.7;">
+          <strong style="color:var(--font-dark);">Specs:</strong> Background <span class="tag">#4B7CF9</span> · Logo card: white bg, border-radius 8px, overflows 20px below · Nav links: #fff 87% opacity, font-size 14px weight 500 · CTA: <span class="tag">#FFD532</span> pill button · On scroll: add box-shadow <code style="background:#f0f0f6;padding:1px 5px;border-radius:3px;">0 4px 20px rgba(0,0,0,.15)</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BUTTONS ── -->
+    <section class="section" id="buttons">
+      <p class="section-label">Component · 02</p>
+      <h2 class="section-title">Buttons & CTAs</h2>
+      <p class="section-desc">Buttons always use border-radius: 50px (pill shape). CTA yellow is the highest-priority action on any view. Never place two CTA yellow buttons side by side.</p>
+      <hr class="divider"/>
+
+      <div class="comp-card">
+        <h4>Button Variants</h4>
+        <div class="btn-group">
+          <button class="btn btn-cta">Get a Free Quote</button>
+          <button class="btn btn-primary">Our Services</button>
+          <button class="btn btn-nav">Book Appointment</button>
+          <button class="btn btn-outline">Learn More</button>
+          <button class="btn btn-ghost">About Us</button>
+          <button class="btn btn-contrast">Contact Now</button>
+        </div>
+
+        <div style="margin-top:20px;">
+          <h4 style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#bbb;margin-bottom:12px;">Small Variants</h4>
+          <div class="btn-group">
+            <button class="btn btn-cta btn-sm">I Want a Free Quote</button>
+            <button class="btn btn-nav btn-sm">+1 (407) 861-6418</button>
+            <button class="btn btn-outline btn-sm">View All Services</button>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;font-size:13px;color:#888;line-height:1.75;">
+          <strong style="color:var(--font-dark);">Interaction:</strong> hover → translateY(-2px) + box-shadow · active → translateY(0) · disabled → opacity .4, no pointer-events · focus → outline 3px solid #4B7CF9 offset 2px
+        </div>
+      </div>
+    </section>
+
+    <!-- ── INPUTS ── -->
+    <section class="section" id="inputs">
+      <p class="section-label">Component · 03</p>
+      <h2 class="section-title">Form Inputs</h2>
+      <p class="section-desc">Clean, rounded inputs. Focus ring uses nav blue. Labels are small-caps above the field.</p>
+      <hr class="divider"/>
+
+      <div class="comp-grid">
+        <div class="comp-card">
+          <h4>Text Input</h4>
+          <div class="input-label">Full Name</div>
+          <input class="input-preview" type="text" placeholder="Jane Smith"/>
+          <div class="input-label">Email Address</div>
+          <input class="input-preview" type="email" placeholder="hi@example.com"/>
+          <div class="input-label">Phone</div>
+          <input class="input-preview" type="tel" placeholder="+1 (407) 000-0000"/>
+        </div>
+        <div class="comp-card">
+          <h4>Select & Textarea</h4>
+          <div class="input-label">Service Type</div>
+          <select class="input-preview">
+            <option>Standard Cleaning</option>
+            <option>Deep Cleaning</option>
+            <option>Commercial</option>
+            <option>Airbnb Turnover</option>
+          </select>
+          <div class="input-label">Notes</div>
+          <textarea class="input-preview" rows="3" placeholder="Any special instructions…" style="resize:vertical;"></textarea>
+        </div>
+        <div class="comp-card">
+          <h4>States</h4>
+          <div class="input-label">Default</div>
+          <input class="input-preview" type="text" placeholder="Placeholder text"/>
+          <div class="input-label" style="color:#27ae60;">Success</div>
+          <input class="input-preview" type="text" value="Jane Smith" style="border-color:#27ae60;"/>
+          <div class="input-label" style="color:#c0392b;">Error</div>
+          <input class="input-preview" type="text" value="invalidemail" style="border-color:#c0392b;"/>
+          <p style="font-size:12px;color:#c0392b;margin-top:4px;">Please enter a valid email address.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SERVICE CARDS ── -->
+    <section class="section" id="cards-service">
+      <p class="section-label">Component · 04</p>
+      <h2 class="section-title">Service Cards</h2>
+      <p class="section-desc">Used in the main services section. Pink background with navy blue title and dashed-circle icon wrapper. Displayed in 3-column grid on desktop.</p>
+      <hr class="divider"/>
+
+      <div class="comp-grid">
+        <div class="service-card">
+          <div class="service-icon-wrap">🏠</div>
+          <h3>Standard Cleaning</h3>
+          <div class="bar"></div>
+          <p>Consistently fresh, always inviting. The perfect regular maintenance to keep your home healthy and smelling great every week.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon-wrap">✨</div>
+          <h3>Deep Cleaning</h3>
+          <div class="bar"></div>
+          <p>A total home reset. A top-to-bottom scrub that tackles hidden dust and grime in hard-to-reach spots for a truly refreshing feel.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon-wrap">🏢</div>
+          <h3>Commercial Cleaning</h3>
+          <div class="bar"></div>
+          <p>Impress from the first step. Boost productivity and brand image with a professional workspace that's as clean as it is welcoming.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;font-size:13px;color:#888;line-height:1.7;">
+        <strong style="color:var(--font-dark);">Specs:</strong> Card bg <span class="tag">#F79ECA</span> · border-radius 16px · padding 28px 24px · icon circle 64px dashed border rgba(white,.5) · h3 color <span class="tag">#4B7CF9</span> · blue bar 32px × 3px under title · p color <span class="tag">#3f3f3f</span> · hover: card lifts translateY(-4px) + box-shadow
+      </div>
+    </section>
+
+    <!-- ── TRUST BADGES ── -->
+    <section class="section" id="cards-trust">
+      <p class="section-label">Component · 05</p>
+      <h2 class="section-title">Trust Badges</h2>
+      <p class="section-desc">2×2 grid on white/mint background. Icon square in pink. Title in pink. Body in dark gray. Used in the "Why Choose Us" section.</p>
+      <hr class="divider"/>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="trust-card">
+          <div class="trust-icon">🔍</div>
+          <div>
+            <h4>Attention to Detail</h4>
+            <p>We follow a detailed checklist to ensure every corner, switch, and baseboard is spotless. Nothing is overlooked.</p>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">🐾</div>
+          <div>
+            <h4>Family & Pet Safe</h4>
+            <p>High-performance cleaning products that are effective yet safe for your kids, pets, and the environment.</p>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">🏆</div>
+          <div>
+            <h4>100% Satisfaction Guarantee</h4>
+            <p>Not happy with the results? Let us know within 24 hours and we'll come back to re-clean for free. No questions asked.</p>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">✅</div>
+          <div>
+            <h4>Vetted Professionals</h4>
+            <p>Every team member undergoes a rigorous background check. Your safety and your home's security are our top priorities.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA BANNER ── -->
+    <section class="section" id="cta-banner">
+      <p class="section-label">Component · 06</p>
+      <h2 class="section-title">CTA Banner</h2>
+      <p class="section-desc">Full-width pill-rounded banner. Pink bg. Bold white copy left, yellow CTA button right. Used for appointment booking callouts and phone number prompts.</p>
+      <hr class="divider"/>
+
+      <div class="comp-card">
+        <h4>Primary CTA Banner</h4>
+        <div class="cta-banner">
+          <div>
+            <p>Get a Free Appointment Booking!</p>
+            <span>Orlando's most trusted home cleaning service</span>
+          </div>
+          <button class="btn btn-cta">I Want a Free Quote Now</button>
+        </div>
+      </div>
+
+      <div class="comp-card" style="margin-top:14px;">
+        <h4>Phone CTA Banner</h4>
+        <div class="cta-banner">
+          <p>Please Call Us to Take an Extraordinary Service!</p>
+          <button class="btn btn-cta">📞 +1 (407) 861-6418</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <section class="section" id="footer-comp">
+      <p class="section-label">Component · 07</p>
+      <h2 class="section-title">Footer</h2>
+      <p class="section-desc">3-column layout on mint/secondary background. Logo + tagline left, contact info center, social links right. Column headers use yellow underline accent.</p>
+      <hr class="divider"/>
+
+      <div class="footer-preview">
+        <div>
+          <div style="font-size:22px;font-weight:800;color:var(--primary);margin-bottom:8px;">Skyline ✨</div>
+          <div style="font-size:14px;color:#555;line-height:1.7;">Your trusted local experts for a healthier, cleaner home. We take the stress out of housework so you can focus on what matters most in Orlando.</div>
+        </div>
+        <div>
+          <h4>Official Info</h4>
+          <a href="#">📍 Orlando, Florida</a>
+          <a href="#">📞 +1 (407) 861-6418</a>
+          <a href="#">✉️ hi@skylinehomecleaning.net</a>
+        </div>
+        <div>
+          <h4>Follow Us</h4>
+          <p>Join us on social media for exclusive offers and a behind-the-scenes look at how we make every home spotless.</p>
+          <div>
+            <span class="social-btn fb">f</span>
+            <span class="social-btn ig">📷</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-size:13px;color:#888;line-height:1.7;">
+        <strong style="color:var(--font-dark);">Specs:</strong> bg <span class="tag">#B0D9C7</span> · col header border-bottom 2px <span class="tag">#FFD532</span> · copyright bar below: darker mint with font-dark text size 12px
+      </div>
+    </section>
+
+    <!-- ── STATES ── -->
+    <section class="section" id="states">
+      <p class="section-label">Component · 08</p>
+      <h2 class="section-title">States & Feedback</h2>
+      <p class="section-desc">Consistent state colors across all interactive elements. Never use red for decorative purposes — reserve it for errors only.</p>
+      <hr class="divider"/>
+
+      <div class="comp-card">
+        <h4>Badge / Tag States</h4>
+        <div class="state-grid">
+          <span class="state-badge state-default">Default</span>
+          <span class="state-badge state-active">Active / CTA</span>
+          <span class="state-badge state-success">Success / Confirmed</span>
+          <span class="state-badge state-error">Error / Invalid</span>
+          <span class="state-badge state-disabled">Disabled</span>
+        </div>
+      </div>
+
+      <div class="comp-card" style="margin-top:14px;">
+        <h4>Notification / Toast</h4>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="background:var(--secondary);border-left:4px solid #27ae60;padding:12px 16px;border-radius:8px;font-size:13px;color:var(--font-dark);">✅ <strong>Booking Confirmed!</strong> We'll see you on Saturday at 9:00 AM.</div>
+          <div style="background:#fff3cd;border-left:4px solid var(--cta);padding:12px 16px;border-radius:8px;font-size:13px;color:var(--font-dark);">⚠️ <strong>Heads up:</strong> Please confirm your appointment 24h in advance.</div>
+          <div style="background:#ffe0e0;border-left:4px solid #c0392b;padding:12px 16px;border-radius:8px;font-size:13px;color:#c0392b;">❌ <strong>Something went wrong.</strong> Please check your details and try again.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WIREFRAME ── -->
+    <section class="section" id="wireframe-home">
+      <p class="section-label">Pages · 01</p>
+      <h2 class="section-title">Home Page Wireframe</h2>
+      <p class="section-desc">Full-page annotated wireframe showing section order, layout proportions, and component placement for the desktop home page.</p>
+      <hr class="divider"/>
+
+      <div class="wireframe-box">
+        <div class="wf-label">01 · Navigation Bar — sticky, z-index 100</div>
+        <div class="wf-inner">
+          <div class="wf-nav">
+            <div class="wf-logo"></div>
+            <div class="wf-links">
+              <div class="wf-link"></div>
+              <div class="wf-link"></div>
+              <div class="wf-link"></div>
+              <div class="wf-link"></div>
+            </div>
+            <div class="wf-btn-nav"></div>
+          </div>
+          <p style="font-size:11px;color:#aaa;margin-top:4px;">Height: 64px · bg: #4B7CF9 · Logo card overflows 20px below navbar · CTA pill: #FFD532</p>
+        </div>
+      </div>
+
+      <div class="wireframe-box">
+        <div class="wf-label">02 · Hero Section — bg: #F79ECA · min-height: 600px</div>
+        <div class="wf-inner">
+          <div class="wf-hero">
+            <div class="wf-text-block">
+              <div class="wf-eyebrow"></div>
+              <div class="wf-h1-block"></div>
+              <div class="wf-h1-block2"></div>
+              <div class="wf-body-block"></div>
+              <div class="wf-body-block2"></div>
+              <div class="wf-actions">
+                <div class="wf-btn-hero"></div>
+                <div class="wf-btn-hero2"></div>
+              </div>
+            </div>
+            <div class="wf-image-ph">Cleaner Photo<br/>Right-aligned<br/>cropped at bottom</div>
+          </div>
+          <p style="font-size:11px;color:#aaa;margin-top:4px;">Grid: 6col text / 6col image · Eyebrow: #B0D9C7 tag · H1: 49px/800/white · Buttons: "Our Services" ghost + "Get A Free Quote" outline</p>
+        </div>
+      </div>
+
+      <div class="wireframe-box">
+        <div class="wf-label">03 · Service Type Cards — bg: #F79ECA · 3-column</div>
+        <div class="wf-inner">
+          <div class="wf-section">
+            <div class="wf-section-title"></div>
+            <div class="wf-cards">
+              <div class="wf-card">
+                <div class="wf-card-icon"></div>
+                <div class="wf-card-title"></div>
+                <div class="wf-card-body"></div>
+                <div class="wf-card-body2"></div>
+              </div>
+              <div class="wf-card">
+                <div class="wf-card-icon"></div>
+                <div class="wf-card-title"></div>
+                <div class="wf-card-body"></div>
+                <div class="wf-card-body2"></div>
+              </div>
+              <div class="wf-card">
+                <div class="wf-card-icon"></div>
+                <div class="wf-card-title"></div>
+                <div class="wf-card-body"></div>
+                <div class="wf-card-body2"></div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:#aaa;margin-top:4px;">Standard Cleaning · Deep Cleaning · Commercial Cleaning · Icon in dashed circle · Title in #4B7CF9 · Blue underline bar</p>
+        </div>
+      </div>
+
+      <div class="wireframe-box">
+        <div class="wf-label">04 · Services We Provide — bg: #F9F9FB · 3-col layout with center image</div>
+        <div class="wf-inner">
+          <div class="wf-section">
+            <div class="wf-services-layout">
+              <div class="wf-service-list">
+                <div class="wf-service-item">
+                  <div class="wf-si-icon"></div>
+                  <div class="wf-si-text"><div class="wf-si-t"></div><div class="wf-si-d"></div></div>
+                </div>
+                <div class="wf-service-item">
+                  <div class="wf-si-icon"></div>
+                  <div class="wf-si-text"><div class="wf-si-t"></div><div class="wf-si-d"></div></div>
+                </div>
+                <div class="wf-service-item">
+                  <div class="wf-si-icon"></div>
+                  <div class="wf-si-text"><div class="wf-si-t"></div><div class="wf-si-d"></div></div>
+                </div>
+              </div>
+              <div class="wf-center-img">Cleaner Photo in circle</div>
+              <div class="wf-service-list">
+                <div class="wf-service-item">
+                  <div class="wf-si-icon"></div>
+                  <div class="wf-si-text"><div class="wf-si-t"></div><div class="wf-si-d"></div></div>
+                </div>
+                <div class="wf-service-item">
+                  <div class="wf-si-icon"></div>
+                  <div class="wf-si-text"><div class="wf-si-t"></div><div class="wf-si-d"></div></div>
+                </div>
+                <div class="wf-service-item">
+                  <div class="wf-si-icon"></div>
+                  <div class="wf-si-text"><div class="wf-si-t"></div><div class="wf-si-d"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:#aaa;margin-top:4px;">Left: House · Office · Airbnb · Right: Toilet · Kitchen · Add-ons · Center: cleaner photo in blue circle + "+ Services we provide" badge</p>
+        </div>
+      </div>
+
+      <div class="wireframe-box">
+        <div class="wf-label">05 · Why Choose Us — bg: #FFFFFF · 2×2 grid</div>
+        <div class="wf-inner">
+          <div class="wf-section" style="background:#fff;">
+            <div class="wf-trust">
+              <div class="wf-trust-item"><div class="wf-ti-icon"></div><div class="wf-ti-text"><div class="wf-ti-t"></div><div class="wf-ti-d"></div><div class="wf-ti-d" style="width:80%;"></div></div></div>
+              <div class="wf-trust-item"><div class="wf-ti-icon"></div><div class="wf-ti-text"><div class="wf-ti-t"></div><div class="wf-ti-d"></div><div class="wf-ti-d" style="width:80%;"></div></div></div>
+              <div class="wf-trust-item"><div class="wf-ti-icon"></div><div class="wf-ti-text"><div class="wf-ti-t"></div><div class="wf-ti-d"></div><div class="wf-ti-d" style="width:80%;"></div></div></div>
+              <div class="wf-trust-item"><div class="wf-ti-icon"></div><div class="wf-ti-text"><div class="wf-ti-t"></div><div class="wf-ti-d"></div><div class="wf-ti-d" style="width:80%;"></div></div></div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:#aaa;margin-top:4px;">Attention to Detail · Family & Pet Safe · 100% Guarantee · Vetted Professionals · Icon square in #F79ECA · title in #F79ECA · body in #555</p>
+        </div>
+      </div>
+
+      <div class="wireframe-box">
+        <div class="wf-label">06 · CTA Banners — bg: #F79ECA</div>
+        <div class="wf-inner">
+          <div class="wf-section" style="background:#fff;padding:0;">
+            <div class="wf-cta-bar" style="margin-bottom:10px;">
+              <div class="wf-cta-text"><div class="wf-cta-t"></div><div class="wf-cta-d"></div></div>
+              <div class="wf-cta-btn"></div>
+            </div>
+            <div class="wf-cta-bar">
+              <div class="wf-cta-text"><div class="wf-cta-t" style="width:280px;"></div></div>
+              <div class="wf-cta-btn" style="width:160px;"></div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:#aaa;margin-top:8px;">Banner 1: "Get a Free Appointment Booking!" + yellow CTA · Banner 2: phone number prompt → "++1 (407) 861-6418" yellow pill</p>
+        </div>
+      </div>
+
+      <div class="wireframe-box">
+        <div class="wf-label">07 · Footer — bg: #B0D9C7 · 3 columns</div>
+        <div class="wf-inner">
+          <div class="wf-footer">
+            <div class="wf-footer-col">
+              <div class="wf-fc-logo"></div>
+              <div class="wf-fc-line"></div>
+              <div class="wf-fc-line2"></div>
+              <div class="wf-fc-line"></div>
+            </div>
+            <div class="wf-footer-col">
+              <div class="wf-fc-title"></div>
+              <div class="wf-fc-line" style="width:70%;"></div>
+              <div class="wf-fc-line" style="width:80%;"></div>
+              <div class="wf-fc-line" style="width:90%;"></div>
+            </div>
+            <div class="wf-footer-col">
+              <div class="wf-fc-title"></div>
+              <div class="wf-fc-line"></div>
+              <div class="wf-socials">
+                <div class="wf-social-dot"></div>
+                <div class="wf-social-dot"></div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:#aaa;margin-top:8px;">Logo + tagline · Official info (location, phone, email) · Follow Us (Facebook, Instagram) · Copyright bar below</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RESPONSIVE ── -->
+    <section class="section" id="responsive">
+      <p class="section-label">Pages · 02</p>
+      <h2 class="section-title">Responsive Breakpoints</h2>
+      <p class="section-desc">Mobile-aware layout. Key adjustments at three breakpoints. Navigation collapses to hamburger on mobile.</p>
+      <hr class="divider"/>
+
+      <table class="resp-table">
+        <thead>
+          <tr>
+            <th>Breakpoint</th>
+            <th>Width</th>
+            <th>Grid</th>
+            <th>Key Changes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag">mobile</span></td>
+            <td>≤ 640px</td>
+            <td>1 col</td>
+            <td>Hamburger nav · H1→32px · All cards stack · Buttons full-width · Hero image hidden · Services list vertical</td>
+          </tr>
+          <tr>
+            <td><span class="tag">tablet</span></td>
+            <td>641–1024px</td>
+            <td>2 col</td>
+            <td>Service cards 2×2 · Trust badges 2×2 · Footer 2 col · Nav links visible (condensed)</td>
+          </tr>
+          <tr>
+            <td><span class="tag">desktop</span></td>
+            <td>1025px+</td>
+            <td>12 col</td>
+            <td>Full layout · Logo overflow · 3-col cards · 3×2 services layout · 3-col footer</td>
+          </tr>
+          <tr>
+            <td><span class="tag">wide</span></td>
+            <td>1440px+</td>
+            <td>12 col</td>
+            <td>Max-width 1280px centered · Increased section padding (96px) · Larger hero image proportion</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ── ANIMATION ── -->
+    <section class="section" id="animation">
+      <p class="section-label">Pages · 03</p>
+      <h2 class="section-title">Motion & Animation</h2>
+      <p class="section-desc">Motion serves clarity, not decoration. All animations respect prefers-reduced-motion. Default easing is ease-out for entries, ease-in-out for hovers.</p>
+      <hr class="divider"/>
+
+      <div class="anim-card">
+        <strong>Page Load / Hero</strong><br>
+        Eyebrow tag fades in (opacity 0→1, 300ms). H1 slides up 20px + fades (500ms, delay 100ms). Body text fades (400ms, delay 300ms). Buttons fade (300ms, delay 500ms). Hero image slides in from right 40px (600ms, delay 200ms).
+      </div>
+      <div class="anim-card">
+        <strong>Scroll Reveal (IntersectionObserver)</strong><br>
+        Cards: translateY(24px) → 0, opacity 0→1, stagger 80ms per card. Trust badges: same. Threshold: 0.15. Once played, does not replay.
+      </div>
+      <div class="anim-card">
+        <strong>Button Hover</strong><br>
+        translateY(-2px) + box-shadow 0 8px 24px rgba(0,0,0,.15). Duration: 160ms ease-out. Active: translateY(0), 80ms. All buttons consistent.
+      </div>
+      <div class="anim-card">
+        <strong>Service Card Hover</strong><br>
+        translateY(-4px) + box-shadow 0 12px 32px rgba(0,0,0,.12). Duration: 200ms ease-out. Icon circle rotates 5deg. No color change.
+      </div>
+      <div class="anim-card">
+        <strong>Nav Scroll Effect</strong><br>
+        On scroll > 60px: navbar adds box-shadow 0 4px 20px rgba(0,0,0,.15) and slight blur backdrop. Logo card scales down from overflow to flush (subtle transform). Duration: 300ms.
+      </div>
+      <div class="anim-card">
+        <strong>Reduced Motion</strong><br>
+        <code style="background:#f0f0f6;padding:2px 6px;border-radius:3px;">@media (prefers-reduced-motion: reduce)</code> — All transforms removed. Only opacity transitions preserved (max 200ms). No scroll animations.
+      </div>
+
+      <div style="margin-top:20px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <p style="font-size:13px;font-weight:700;color:#aaa;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;">Easing Reference</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;color:#555;line-height:1.7;">
+          <div><strong style="color:var(--font-dark);">Entry animations:</strong> cubic-bezier(0.16, 1, 0.3, 1) — fast out, settles soft</div>
+          <div><strong style="color:var(--font-dark);">Hover / interactive:</strong> ease-out — quick start, controlled end</div>
+          <div><strong style="color:var(--font-dark);">Exit / dismiss:</strong> ease-in — accelerates to exit</div>
+          <div><strong style="color:var(--font-dark);">Scroll animations:</strong> ease-out · 400ms max duration</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer of doc -->
+    <div style="border-top:2px solid var(--border);padding-top:32px;margin-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="font-size:16px;font-weight:800;color:var(--primary);">Skyline Home Cleaning</div>
+        <div style="font-size:12px;color:#aaa;">System Design v1.0 — All sections and components defined above</div>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <span style="background:var(--primary);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;">Roboto Family</span>
+        <span style="background:var(--nav-bg);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;">7 Colors</span>
+        <span style="background:var(--secondary);color:var(--font-dark);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;">8px Grid</span>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

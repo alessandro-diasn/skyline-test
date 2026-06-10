@@ -1,0 +1,121 @@
+<style>
+  #custom-cta-skyline {
+    --green: #B3E0CC;
+    --blue-dark: #134061;
+    --pink: #f79eca;
+    --white: #FFFFFF;
+    --text-mid: #4C4C4C;
+    --sp-section: 80px;
+    --sp-inner: 20px;
+    --r-pill: 100px;
+    
+    font-family: 'Roboto', sans-serif;
+    padding: var(--sp-section) 0;
+    background: var(--green); /* Fundo verdinho solicitado */
+    
+    /* Hack para forçar a largura total da janela ignorando o Elementor */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  
+  #custom-cta-skyline * { box-sizing: border-box; }
+  
+  #custom-cta-skyline .container { 
+    width: 100%; 
+    max-width: 600px; /* Mais estreito para o formulário ficar elegante */
+    margin: 0 auto; 
+    padding: 0 var(--sp-inner); 
+    display: block; 
+  }
+  
+  #custom-cta-skyline .eyebrow { 
+    font-size: 13px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; 
+    color: var(--blue-dark); margin-bottom: 12px; display: block; opacity: 0.8;
+  }
+  
+  #custom-cta-skyline .section-title { 
+    font-family: 'Roboto', sans-serif; font-size: clamp(32px, 6vw, 48px); 
+    font-weight: 800; line-height: 1.1; letter-spacing: -0.8px; color: var(--blue-dark); margin: 0 0 16px 0; 
+  }
+  
+  #custom-cta-skyline .section-body {
+    font-size: 18px; line-height: 1.6; color: var(--blue-dark); margin: 0 0 36px 0; opacity: 0.9;
+  }
+  
+  #custom-cta-skyline .cta-form {
+    display: flex; gap: 12px; flex-direction: column; width: 100%;
+  }
+  
+  @media (min-width: 600px) {
+    #custom-cta-skyline .cta-form { flex-direction: row; }
+    #custom-cta-skyline { --sp-section: 100px; }
+  }
+  
+  #custom-cta-skyline .cta-input {
+    flex-grow: 1;
+    height: 56px;
+    border-radius: var(--r-pill);
+    border: none;
+    padding: 0 24px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s;
+    color: var(--blue-dark);
+  }
+  
+  #custom-cta-skyline .cta-input::placeholder {
+    color: #a0a0a0;
+  }
+  
+  #custom-cta-skyline .cta-input:focus {
+    box-shadow: 0 4px 20px rgba(19, 64, 97, 0.15);
+  }
+  
+  #custom-cta-skyline .cta-button {
+    height: 56px;
+    border-radius: var(--r-pill);
+    background: var(--blue-dark); /* Botão azul escuro gera alto contraste com o fundo verde */
+    color: var(--white);
+    border: none;
+    padding: 0 36px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: background 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  
+  @media (hover: hover) {
+    #custom-cta-skyline .cta-button:hover {
+      background: #0d2c43; /* Escurece um pouco ao passar o mouse */
+      transform: translateY(-2px);
+    }
+  }
+  
+  #custom-cta-skyline .disclaimer {
+    font-size: 13px; color: var(--blue-dark); opacity: 0.6; margin-top: 16px; display: block;
+  }
+</style>
+
+<section id="custom-cta-skyline">
+  <div class="container">
+    <span class="eyebrow">Service Area</span>
+    <h2 class="section-title">Ready for a crystal-clear pool?</h2>
+    <p class="section-body">Enter your email below to see if we service your neighborhood and get your instant online quote.</p>
+    
+    <!-- Formulário com prevenção de envio (onSubmit) já que o botão ainda não tem destino -->
+    <form class="cta-form" onsubmit="event.preventDefault();">
+      <input type="email" class="cta-input" placeholder="Enter your email address" required>
+      <button type="submit" class="cta-button">Check Availability</button>
+    </form>
+    
+    <span class="disclaimer">No spam, ever. We only need your email to send your quote.</span>
+  </div>
+</section>

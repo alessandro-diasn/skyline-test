@@ -1,0 +1,227 @@
+<style>
+  #custom-faq-skyline {
+    --blue-dark: #134061;
+    --text-mid: #4C4C4C;
+    --pink: #f79eca;
+    --pink-bg: #FDF3F8; /* Rosa bem clarinho para o fundo */
+    --white: #FFFFFF;
+    --sp-section: 64px;
+    --sp-inner: 20px;
+    
+    font-family: 'Roboto', sans-serif;
+    padding: var(--sp-section) 0;
+    background: var(--pink-bg);
+    
+    /* Hack para forçar a largura total da janela ignorando o Elementor */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #custom-faq-skyline * { box-sizing: border-box; }
+  
+  #custom-faq-skyline .container { 
+    width: 100%; 
+    max-width: 800px; /* FAQ fica melhor contido em largura menor */
+    margin: 0 auto; 
+    padding: 0 var(--sp-inner); 
+    display: block; 
+  }
+  
+  #custom-faq-skyline .faq-intro { margin-bottom: 48px; text-align: center; }
+  
+  #custom-faq-skyline .eyebrow { 
+    font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; 
+    color: var(--pink); margin-bottom: 12px; display: block; 
+  }
+  
+  #custom-faq-skyline .section-title { 
+    font-family: 'Roboto', sans-serif; font-size: clamp(28px, 6vw, 42px); 
+    font-weight: 800; line-height: 1.15; letter-spacing: -0.8px; color: var(--blue-dark); margin: 0; 
+  }
+  
+  #custom-faq-skyline .faq-list {
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  
+  #custom-faq-skyline .faq-item {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid rgba(247, 158, 202, 0.3); /* Borda rosa super sutil */
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  @media (hover: hover) {
+    #custom-faq-skyline .faq-item:hover {
+      box-shadow: 0 4px 16px rgba(247, 158, 202, 0.15); /* Sombra rosa ao passar o mouse */
+    }
+  }
+  
+  #custom-faq-skyline .faq-q {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 24px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  #custom-faq-skyline .faq-q.open {
+    color: var(--pink);
+  }
+  
+  #custom-faq-skyline .faq-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    color: var(--pink);
+  }
+  
+  #custom-faq-skyline .faq-icon::before,
+  #custom-faq-skyline .faq-icon::after {
+    content: '';
+    position: absolute;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+  }
+  
+  #custom-faq-skyline .faq-icon::before { top: 11px; left: 4px; right: 4px; height: 2px; }
+  #custom-faq-skyline .faq-icon::after { top: 4px; bottom: 4px; left: 11px; width: 2px; }
+  
+  /* Animação do ícone de + para - */
+  #custom-faq-skyline .faq-q.open .faq-icon::after { transform: rotate(90deg); }
+  
+  #custom-faq-skyline .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  
+  #custom-faq-skyline .faq-a.open {
+    max-height: 500px;
+  }
+  
+  #custom-faq-skyline .faq-a-inner {
+    padding: 0 24px 24px 24px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-mid);
+  }
+  
+  @media (min-width: 900px) {
+    #custom-faq-skyline { --sp-section: 100px; --sp-inner: 120px; }
+  }
+</style>
+
+<section id="custom-faq-skyline">
+  <div class="container">
+    
+    <div class="faq-intro">
+      <span class="eyebrow">Support & Details</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq-list">
+      
+      <!-- FAQ 1 -->
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleSkylineFaq(this)">
+          Do I need to be home for the cleaning?
+          <div class="faq-icon"></div>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            No! As long as our technician has access to your pool area, we can complete the service. We will send you a detailed photo report and chemistry log as soon as we're done, so you always know exactly what happened.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleSkylineFaq(this)">
+          Are there any long-term contracts?
+          <div class="faq-icon"></div>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Never. We believe in earning your business every single week. You can pause, adjust, or cancel your service at any time without penalties or hidden cancellation fees.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleSkylineFaq(this)">
+          How soon can you start cleaning my pool?
+          <div class="faq-icon"></div>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            In most cases, we can schedule your very first cleaning or deep-clean recovery within 48 hours of you getting your quote. We move fast so you can dive in sooner.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleSkylineFaq(this)">
+          What happens if it rains on my scheduled day?
+          <div class="faq-icon"></div>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Light rain won't stop our technicians. However, during severe storms or lightning, safety comes first. If we must delay, we will proactively reach out and reschedule your visit for the very next safe day.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleSkylineFaq(this)">
+          Are chemicals included in the flat price?
+          <div class="faq-icon"></div>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Yes! All standard balancing chemicals (such as chlorine, acid, and bicarb) are strictly included in your flat weekly rate. You'll never see surprise upcharges for routine water balancing.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+</section>
+
+<!-- Script do Acordeão do FAQ -->
+<script>
+  function toggleSkylineFaq(btn) {
+    var answer = btn.nextElementSibling;
+    var isOpen = btn.classList.contains('open');
+    
+    // Fecha todos os outros FAQs abertos para manter limpo
+    var container = btn.closest('#custom-faq-skyline');
+    container.querySelectorAll('.faq-q').forEach(function(q) {
+      q.classList.remove('open');
+      q.nextElementSibling.classList.remove('open');
+    });
+    
+    // Abre o clicado se ele não estava aberto antes
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.classList.add('open');
+    }
+  }
+</script>

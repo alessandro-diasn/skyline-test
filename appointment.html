@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Book your professional home cleaning appointment with Skyline Home Cleaning. Fast, easy, and obligation-free. 5 simple steps to a spotless home in Orlando." />
+  <title>Book an Appointment | Skyline Home Cleaning</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+  <!-- CSS Layer -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/utilities.css" />
+  <link rel="stylesheet" href="css/appointment.css?v=5" />
+</head>
+<body>
+
+  <a href="#main-content" class="u-skip-link">Skip to main content</a>
+
+  <!-- ── HEADER (shared, same as index.html) ─────────────────── -->
+  <header class="main-header" role="banner">
+    <div class="u-container header-container">
+
+      <a href="/" class="header-logo" aria-label="Skyline Home Cleaning Home">
+        <picture>
+          <source media="(min-width: 641px)" srcset="assets/logos/logo-desktop-skyline.png">
+          <img src="assets/logos/rounded-mobile-skyline.png" alt="Skyline Home Cleaning Logo" class="header-logo__img">
+        </picture>
+      </a>
+
+      <button class="header-nav__toggle" data-nav-toggle aria-expanded="false" aria-label="Open navigation menu">
+        <span class="u-sr-only">Menu</span>
+        <div class="hamburger-icon"></div>
+      </button>
+
+      <nav class="header-nav" data-nav-menu aria-label="Main navigation">
+        <ul class="header-nav__list">
+          <li class="header-nav__item"><a href="index.html#home" class="header-nav__link">Home</a></li>
+          <li class="header-nav__item"><a href="index.html#services" class="header-nav__link">Services</a></li>
+          <li class="header-nav__item"><a href="index.html#why-choose-us" class="header-nav__link">About Us</a></li>
+          <li class="header-nav__item"><a href="index.html#pool-care" class="header-nav__link">Pool Care</a></li>
+          <li class="header-nav__item"><a href="index.html#contact" class="header-nav__link">Contact</a></li>
+          <li class="header-nav__item header-nav__cta-mobile">
+            <a href="appointment.html" class="btn btn--cta">Get a Quote</a>
+          </li>
+        </ul>
+      </nav>
+
+      <a href="appointment.html" class="btn btn--cta btn-header-cta">Get a Quote</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── BOOKING HERO ──────────────────────────────────────── -->
+    <section class="booking-hero" aria-label="Booking header">
+      <div class="u-container">
+        <span class="booking-hero__eyebrow">
+          ✨ No Obligation &amp; No Commitment
+        </span>
+        <h1 class="booking-hero__title">
+          Book a Cleaning for<br>
+          Your Home in Less<br>
+          than 60 Seconds.
+        </h1>
+        <p class="booking-hero__sub">
+          Fill out our simple 5-step form and we'll get back to you with a custom quote as fast as possible.
+        </p>
+
+
+      </div>
+    </section>
+
+    <!-- ── MAIN BOOKING LAYOUT ──────────────────────────────── -->
+    <section id="booking-form-start" class="booking-page" aria-label="Booking form">
+      <div class="u-container">
+        <div class="booking-layout">
+
+          <!-- ╔══════════════════════════════════════╗
+               ║  LEFT SIDEBAR                        ║
+               ╚══════════════════════════════════════╝ -->
+          <aside class="booking-sidebar" aria-label="Contact information">
+
+            <p class="booking-sidebar__headline">Complete Your Booking!</p>
+            <h2 class="booking-sidebar__tagline">Your spotless home is just a few clicks away.</h2>
+
+            <!-- Office Address -->
+            <div class="booking-info-card" data-reveal>
+              <div class="booking-info-card__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div class="booking-info-card__body">
+                <p class="booking-info-card__label">Office Address</p>
+                <p class="booking-info-card__value">Orlando, FL</p>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <a href="tel:+14078616418" class="booking-info-card" data-reveal style="text-decoration: none;">
+              <div class="booking-info-card__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div class="booking-info-card__body">
+                <p class="booking-info-card__label">Telephone Number</p>
+                <p class="booking-info-card__value">+1 (407) 861-6418</p>
+              </div>
+            </a>
+
+            <!-- Email -->
+            <a href="mailto:hi@skylinehomecleaning.net" class="booking-info-card" data-reveal style="text-decoration: none;">
+              <div class="booking-info-card__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div class="booking-info-card__body">
+                <p class="booking-info-card__label">Mail Address</p>
+                <p class="booking-info-card__value">hi@skylinehomecleaning.net</p>
+              </div>
+            </a>
+
+
+          </aside>
+
+          <!-- ╔══════════════════════════════════════╗
+               ║  BOOKING FORM PANEL                  ║
+               ╚══════════════════════════════════════╝ -->
+          <div class="booking-form-panel" role="main">
+
+            <form id="booking-form" data-booking-form novalidate>
+
+              <!-- Tab Navigation -->
+              <div class="booking-tabs" role="tablist" aria-label="Booking steps">
+                <button type="button" class="tab-btn active unlocked" data-target="1" role="tab" aria-selected="true" aria-controls="step-1">
+                  <span class="tab-num">1</span>
+                  <span class="tab-text">Contact</span>
+                </button>
+                <button type="button" class="tab-btn" data-target="2" role="tab" aria-selected="false" aria-controls="step-2">
+                  <span class="tab-num">2</span>
+                  <span class="tab-text">Address</span>
+                </button>
+                <button type="button" class="tab-btn" data-target="3" role="tab" aria-selected="false" aria-controls="step-3">
+                  <span class="tab-num">3</span>
+                  <span class="tab-text">Services</span>
+                </button>
+                <button type="button" class="tab-btn" data-target="4" role="tab" aria-selected="false" aria-controls="step-4">
+                  <span class="tab-num">4</span>
+                  <span class="tab-text">Details</span>
+                </button>
+                <button type="button" class="tab-btn" data-target="5" role="tab" aria-selected="false" aria-controls="step-5">
+                  <span class="tab-num">5</span>
+                  <span class="tab-text">Requests</span>
+                </button>
+              </div>
+
+              <!-- ── STEP 1: CONTACT ──────────────────────────── -->
+              <div class="booking-step active" data-step="1" id="step-1" role="tabpanel" aria-labelledby="tab-1">
+
+                <div class="booking-field">
+                  <label for="user-name">First &amp; Last Name *</label>
+                  <input
+                    type="text"
+                    id="user-name"
+                    name="user-name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                  />
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+
+                <div class="booking-field">
+                  <label for="user-email">Email Address *</label>
+                  <input
+                    type="email"
+                    id="user-email"
+                    name="user-email"
+                    placeholder="Enter your best email"
+                    autocomplete="email"
+                    required
+                  />
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+
+                <div class="booking-field">
+                  <label for="user-phone">Phone Number *</label>
+                  <input
+                    type="tel"
+                    id="user-phone"
+                    name="user-phone"
+                    placeholder="(000) 000-0000"
+                    autocomplete="tel"
+                    required
+                  />
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+
+                <div class="booking-terms">
+                  <label class="booking-check">
+                    <input type="checkbox" id="chk-sms" name="acceptance-sms" value="Yes">
+                    <span>I consent to receive SMS related to this booking. You can reply STOP to unsubscribe at any time.</span>
+                  </label>
+                  <label class="booking-check">
+                    <input type="checkbox" id="chk-marketing" name="acceptance-marketing" value="Yes">
+                    <span>I agree to receive occasional marketing messages.</span>
+                  </label>
+                </div>
+
+                <div class="step-navigation single-btn">
+                  <button type="button" class="btn-premium" data-next>
+                    Next Step
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- ── STEP 2: ADDRESS ──────────────────────────── -->
+              <div class="booking-step" data-step="2" id="step-2" role="tabpanel" aria-labelledby="tab-2">
+
+                <div class="booking-field">
+                  <label for="address-1">Address Line 1 *</label>
+                  <input
+                    type="text"
+                    id="address-1"
+                    name="address-1"
+                    placeholder="Street address"
+                    autocomplete="address-line1"
+                    required
+                  />
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+
+                <div class="booking-field">
+                  <label for="address-2">Address Line 2 <em style="font-style:normal;font-weight:400;color:#bbb;">(Optional)</em></label>
+                  <input
+                    type="text"
+                    id="address-2"
+                    name="address-2"
+                    placeholder="Apt, Suite, Unit…"
+                    autocomplete="address-line2"
+                  />
+                </div>
+
+                <div class="booking-grid-3">
+                  <div class="booking-field">
+                    <label for="address-city">City *</label>
+                    <input
+                      type="text"
+                      id="address-city"
+                      name="address-city"
+                      placeholder="City"
+                      autocomplete="address-level2"
+                      required
+                    />
+                    <span class="field-error" aria-live="polite"></span>
+                  </div>
+                  <div class="booking-field">
+                    <label for="address-state">State *</label>
+                    <input
+                      type="text"
+                      id="address-state"
+                      name="address-state"
+                      placeholder="FL"
+                      autocomplete="address-level1"
+                      required
+                    />
+                    <span class="field-error" aria-live="polite"></span>
+                  </div>
+                  <div class="booking-field">
+                    <label for="address-zip">ZIP *</label>
+                    <input
+                      type="text"
+                      id="address-zip"
+                      name="address-zip"
+                      placeholder="32801"
+                      autocomplete="postal-code"
+                      required
+                    />
+                    <span class="field-error" aria-live="polite"></span>
+                  </div>
+                </div>
+
+
+                <div class="step-navigation">
+                  <button type="button" class="btn-premium-outline" data-prev>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                    Back
+                  </button>
+                  <button type="button" class="btn-premium" data-next>
+                    Next Step
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- ── STEP 3: SERVICES ─────────────────────────── -->
+              <div class="booking-step" data-step="3" id="step-3" role="tabpanel" aria-labelledby="tab-3">
+
+                <h3 class="step-title">Pick additional services below</h3>
+                <div class="services-grid" data-services-grid aria-label="Service options">
+                  <!-- Built dynamically by JS -->
+                </div>
+
+                <div class="step-navigation">
+                  <button type="button" class="btn-premium-outline" data-prev>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                    Back
+                  </button>
+                  <button type="button" class="btn-premium" data-next>
+                    Next Step
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- ── STEP 4: PROPERTY DETAILS ────────────────── -->
+              <div class="booking-step" data-step="4" id="step-4" role="tabpanel" aria-labelledby="tab-4">
+
+                <!-- Hidden fields for slider values -->
+                <input type="hidden" name="beds-count" id="beds-count-hidden" value="1">
+                <input type="hidden" name="baths-count" id="baths-count-hidden" value="1">
+                <input type="hidden" name="size-count" id="size-count-hidden" value="1200">
+
+                <div class="slider-group mt-1">
+                  <h3 class="step-title" style="margin-bottom: 0.5rem;">How many bedrooms should be cleaned?</h3>
+                  <div class="range-container">
+                    <div class="range-tooltip" id="tooltip-beds" aria-live="polite">1 Bedroom</div>
+                    <input
+                      type="range"
+                      min="1" max="10" value="1" step="1"
+                      class="custom-range"
+                      id="range-beds"
+                      aria-label="Number of bedrooms"
+                      aria-valuemin="1"
+                      aria-valuemax="10"
+                      aria-valuenow="1"
+                    >
+                  </div>
+                </div>
+
+                <div class="slider-group mt-3">
+                  <h3 class="step-title" style="margin-bottom: 0.5rem;">How many bathrooms should be cleaned?</h3>
+                  <div class="range-container">
+                    <div class="range-tooltip" id="tooltip-baths" aria-live="polite">1 Bathroom</div>
+                    <input
+                      type="range"
+                      min="1" max="10" value="1" step="1"
+                      class="custom-range"
+                      id="range-baths"
+                      aria-label="Number of bathrooms"
+                      aria-valuemin="1"
+                      aria-valuemax="10"
+                      aria-valuenow="1"
+                    >
+                  </div>
+                </div>
+
+                <div class="slider-group mt-3">
+                  <h3 class="step-title" style="margin-bottom: 0.5rem;">How large is the property?</h3>
+                  <div class="range-container">
+                    <div class="range-tooltip tooltip-large" id="tooltip-size" aria-live="polite">~1,200 sqft</div>
+                    <input
+                      type="range"
+                      min="300" max="10000" value="1200" step="100"
+                      class="custom-range"
+                      id="range-size"
+                      aria-label="Property size in square feet"
+                      aria-valuemin="300"
+                      aria-valuemax="10000"
+                      aria-valuenow="1200"
+                    >
+                  </div>
+                </div>
+
+                <div class="step-navigation mt-3">
+                  <button type="button" class="btn-premium-outline" data-prev>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                    Back
+                  </button>
+                  <button type="button" class="btn-premium" data-next>
+                    Next Step
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- ── STEP 5: SPECIAL REQUESTS & SUBMIT ────────── -->
+              <div class="booking-step" data-step="5" id="step-5" role="tabpanel" aria-labelledby="tab-5">
+
+                <div class="booking-field" style="margin-bottom: 16px;">
+                  <h3 class="step-title">When was the property last professionally cleaned?</h3>
+                  <div class="radio-blocks" data-radio-last-cleaned aria-required="true" role="radiogroup" aria-label="Last cleaned date range">
+                    <!-- Built dynamically by JS -->
+                  </div>
+                </div>
+
+                <div class="booking-field" style="margin-top: 0;">
+                  <h3 class="step-title">Do you have any special requests?</h3>
+                  <textarea
+                    id="special-requests"
+                    name="special-requests"
+                    placeholder="Additional details, access instructions, pets, allergies, or anything we should know…"
+                    rows="2"
+                    aria-label="Special requests or instructions"
+                  ></textarea>
+                </div>
+
+                <div class="step-navigation">
+                  <button type="button" class="btn-premium-outline" data-prev>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                    Back
+                  </button>
+                  <button type="submit" class="btn-premium-submit" data-submit-btn>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                    Confirm Booking
+                  </button>
+                </div>
+              </div>
+
+              <!-- ── SUCCESS STATE ────────────────────────────── -->
+              <div class="booking-success" data-booking-success role="alert" aria-live="polite">
+                <div class="booking-success__icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <h2 class="booking-success__title">Booking Request Sent! 🎉</h2>
+                <p class="booking-success__body">
+                  Thanks for reaching out! Our team will review your request and contact you within <strong>1 business day</strong> to confirm your appointment details.
+                </p>
+                <a href="index.html" class="btn-premium" style="text-decoration: none; display: inline-flex;">
+                  Back to Home
+                </a>
+              </div>
+
+            </form>
+          </div>
+          <!-- / booking-form-panel -->
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+
+  <!-- JS Layer -->
+  <script type="module" src="js/appointment.js?v=4"></script>
+
+</body>
+</html>

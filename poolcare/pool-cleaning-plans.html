@@ -1,0 +1,224 @@
+<style>
+  #custom-plans-pool {
+    --blue: #1879BF;
+    --blue-dark: #134061;
+    --blue-75: #53A3DC;
+    --blue-55: #81BCE5;
+    --blue-25: #C6E0F3;
+    --blue-10: #EEF6FC;
+    --red: #F8475E;
+    --red-light: #FDD1D7;
+    --gray-mid: #B8B8B8;
+    --gray-light: #D8D8D8;
+    --gray-faint: #F5F5F5;
+    --white: #FFFFFF;
+    --success: #267A57;
+    --text: #000000;
+    --text-mid: #4C4C4C;
+    --text-light: #888888;
+    --border: #E4E4E4;
+    --r-sm: 10px;
+    --r-md: 16px;
+    --r-lg: 24px;
+    --r-pill: 100px;
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.06), 0 2px 12px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+    --sp-section: 56px;
+    --sp-inner: 20px;
+    font-family: 'Roboto', sans-serif;
+    padding: var(--sp-section) 0;
+    background: var(--white);
+    
+    /* CSS Hack para forçar 100% da tela ignorando containers do Elementor */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #custom-plans-pool * { box-sizing: border-box; }
+  
+  #custom-plans-pool .container { width: 100%; max-width: 100%; margin: 0; padding: 0 var(--sp-inner); display: block; }
+  
+  #custom-plans-pool .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: block; }
+  
+  #custom-plans-pool .section-title { 
+    font-family: 'Roboto', sans-serif; 
+    font-size: clamp(26px, 7vw, 44px); 
+    font-weight: 700; line-height: 1.1; letter-spacing: -0.8px; color: var(--blue-dark); 
+    margin: 0; 
+  }
+  
+  #custom-plans-pool .section-body { font-size: 16px; line-height: 1.7; color: var(--text-mid); margin: 0; }
+  
+  #custom-plans-pool .btn-primary { 
+    display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: var(--white); 
+    font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 16px; padding: 15px 28px; 
+    border-radius: var(--r-pill); border: none; cursor: pointer; transition: background 0.18s, transform 0.1s; 
+    white-space: nowrap; min-height: 48px; text-decoration: none; 
+  }
+  
+  #custom-plans-pool .btn-primary:active { background: var(--blue-dark); }
+  @media (hover: hover) { #custom-plans-pool .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(19,64,97,0.25); } }
+
+  #custom-plans-pool .services-intro { margin-bottom: 36px; }
+  #custom-plans-pool .services-intro .section-body { margin-top: 12px; }
+  
+  #custom-plans-pool .services-grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+  
+  #custom-plans-pool .service-card { 
+    border-radius: var(--r-lg); border: 1.5px solid var(--border); overflow: hidden; background: white; 
+    transition: box-shadow 0.2s, border-color 0.2s; 
+  }
+  @media (hover: hover) { #custom-plans-pool .service-card:hover { box-shadow: var(--shadow-lg); border-color: var(--blue-55); } }
+  
+  #custom-plans-pool .service-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+  #custom-plans-pool .service-card-body { padding: 22px; }
+  
+  #custom-plans-pool .service-card-tag { 
+    display: inline-flex; align-items: center; gap: 6px; background: var(--blue-10); color: var(--blue); 
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; 
+    padding: 4px 12px; border-radius: var(--r-pill); margin-bottom: 12px; 
+  }
+  #custom-plans-pool .service-card-tag.featured { background: var(--red-light); color: var(--red); }
+  
+  #custom-plans-pool .service-card-name { 
+    font-family: 'Roboto', sans-serif; font-size: 24px; font-weight: 700; color: var(--blue-dark); 
+    margin-top: 0; margin-bottom: 8px; line-height: 1.15; letter-spacing: -0.5px; 
+  }
+  
+  #custom-plans-pool .service-card-desc { font-size: 15px; line-height: 1.65; color: var(--text-mid); margin-top: 0; margin-bottom: 20px; }
+  
+  #custom-plans-pool .service-includes { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  #custom-plans-pool .service-includes li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.5; color: var(--text-mid); }
+  
+  #custom-plans-pool .check-icon { color: var(--success); flex-shrink: 0; margin-top: 1px; }
+  
+  #custom-plans-pool .service-card-footer { 
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; 
+    padding-top: 20px; border-top: 1px solid var(--gray-faint); 
+  }
+  
+  #custom-plans-pool .service-price { font-size: 14px; color: var(--text-light); }
+  #custom-plans-pool .service-price strong { font-size: 22px; font-weight: 700; color: var(--blue-dark); }
+  
+  #custom-plans-pool .services-help { margin-top: 20px; text-align: center; font-size: 14px; color: var(--text-light); }
+  #custom-plans-pool .services-help a { color: var(--blue); font-weight: 600; text-decoration: none; }
+
+  @media (min-width: 640px) {
+    #custom-plans-pool { --sp-section: 72px; --sp-inner: 28px; }
+    #custom-plans-pool .services-grid--two { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 900px) {
+    #custom-plans-pool { --sp-section: 80px; --sp-inner: 120px; }
+    #custom-plans-pool .services-grid { grid-template-columns: repeat(2, 1fr); }
+    #custom-plans-pool .service-card-body { padding: 28px; }
+  }
+  @media (min-width: 1200px) {
+    #custom-plans-pool .section-body { max-width: 560px; }
+  }
+</style>
+
+<div id="custom-plans-pool">
+  <div class="container">
+    <div style="display:block;width:100%">
+      
+      <div class="services-intro">
+        <span class="eyebrow">Pool Cleaning Plans</span>
+        <h2 class="section-title">Two plans. Both keep<br>your pool beautiful.</h2>
+        <p class="section-body">Pick the plan that fits. Both include the same trusted, vetted pro — coming to your pool on a regular schedule, every time.</p>
+      </div>
+
+      <div class="services-grid services-grid--two">
+
+        <!-- Card 1: Weekly -->
+        <div class="service-card">
+          <img src="https://cdn.prod.website-files.com/6946e14d80acd0693951c0ef/69b859d6a68209a4ed82aa98_1200-included-weeklypool.jpg" alt="Weekly pool cleaning">
+          <div class="service-card-body">
+            <span class="service-card-tag">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Instant Booking
+            </span>
+            <h3 class="service-card-name">Weekly Pool Cleaning</h3>
+            <p class="service-card-desc">Regular maintenance to keep your pool sparkling all season. Your dedicated pro handles everything — you just swim.</p>
+            <ul class="service-includes">
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Skimming, brushing & vacuuming
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Water chemistry testing & balancing
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Filter & basket cleaning
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                After-visit photo report
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Same pro each visit when possible
+              </li>
+            </ul>
+            <div class="service-card-footer">
+              <div class="service-price">From <strong>$38</strong><span style="font-size:13px;color:var(--text-light)">/visit ($152 per 4 visits)</span></div>
+              <a href="#book" class="btn-primary">
+                See My Price
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Weekly + Deep Clean -->
+        <div class="service-card">
+          <img src="https://cdn.prod.website-files.com/6946e14d80acd0693951c0ef/69b859d624de0a98afb9c2d4_1200-included-deepcleanpool.jpg" alt="Deep clean and weekly pool cleaning">
+          <div class="service-card-body">
+            <span class="service-card-tag featured">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+              Most Popular
+            </span>
+            <h3 class="service-card-name">Weekly Clean + Deep Cleaning & Green Pool Recovery</h3>
+            <p class="service-card-desc">Everything in weekly, plus a thorough deep clean to tackle buildup, tile line, and equipment — so your pool stays in peak condition.</p>
+            <ul class="service-includes">
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Everything in Weekly Cleaning
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Tile & waterline scrubbing
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Shock the pool & add algaecide
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Detailed chemistry notes & log
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Multi-day clarity recovery when needed
+              </li>
+            </ul>
+            <div class="service-card-footer">
+              <div class="service-price">Priced for <strong>your pool</strong></div>
+              <a href="#book" class="btn-primary" style="background:var(--blue-dark)">
+                Get My Quote
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="services-help">Not sure which plan is right for you? <a href="tel:8338448659">Call us</a> — we'll help you figure it out.</p>
+    </div>
+  </div>
+</div>

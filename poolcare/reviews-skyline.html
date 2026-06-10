@@ -1,0 +1,162 @@
+<style>
+  #custom-reviews-skyline {
+    --blue-dark: #134061;
+    --text-mid: #4C4C4C;
+    --pink: #f79eca;
+    --white: #FFFFFF;
+    --r-lg: 24px;
+    --sp-section: 64px;
+    --sp-inner: 20px;
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.06);
+    
+    font-family: 'Roboto', sans-serif;
+    padding: var(--sp-section) 0;
+    background: #B3E0CC; /* Verdinho solicitado */
+    color: var(--blue-dark);
+    
+    /* Hack para forçar a largura total da janela ignorando o Elementor */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #custom-reviews-skyline * { box-sizing: border-box; }
+  
+  #custom-reviews-skyline .container { 
+    width: 100%; 
+    max-width: 100%; 
+    margin: 0; 
+    padding: 0 var(--sp-inner); 
+    display: block; 
+  }
+  
+  #custom-reviews-skyline .reviews-intro { margin-bottom: 48px; text-align: center; }
+  
+  #custom-reviews-skyline .eyebrow { 
+    font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; 
+    color: var(--blue-dark); margin-bottom: 12px; display: block; 
+  }
+  
+  #custom-reviews-skyline .section-title { 
+    font-family: 'Roboto', sans-serif; font-size: clamp(28px, 6vw, 42px); 
+    font-weight: 800; line-height: 1.15; letter-spacing: -0.8px; color: var(--blue-dark); margin: 0; 
+  }
+  
+  #custom-reviews-skyline .reviews-grid { 
+    display: grid; gap: 20px; grid-template-columns: 1fr; 
+  }
+  
+  @media (min-width: 900px) {
+    #custom-reviews-skyline { --sp-section: 100px; --sp-inner: 120px; }
+    #custom-reviews-skyline .reviews-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  }
+  
+  /* Cards brancos para garantir contraste no fundo verde */
+  #custom-reviews-skyline .review-card { 
+    background: var(--white); 
+    border: 1px solid rgba(0, 0, 0, 0.05); 
+    border-radius: var(--r-lg); padding: 36px; 
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  }
+  
+  @media (hover: hover) { 
+    #custom-reviews-skyline .review-card:hover { 
+      box-shadow: var(--shadow-md); transform: translateY(-4px); 
+    } 
+  }
+  
+  #custom-reviews-skyline .quote-icon {
+    width: 32px; height: 32px; color: var(--pink); margin-bottom: 24px; opacity: 1;
+  }
+  
+  #custom-reviews-skyline .review-text {
+    font-size: 16px; line-height: 1.6; color: var(--text-mid); margin: 0 0 32px 0; font-style: italic;
+  }
+  
+  #custom-reviews-skyline .review-author { display: flex; align-items: center; gap: 14px; }
+  
+  #custom-reviews-skyline .author-avatar {
+    width: 46px; height: 46px; border-radius: 50%; background: var(--pink); 
+    color: var(--white); display: flex; align-items: center; justify-content: center; 
+    font-weight: 800; font-size: 18px; flex-shrink: 0;
+  }
+  
+  #custom-reviews-skyline .author-info strong {
+    display: block; font-size: 15px; font-weight: 600; color: var(--blue-dark); margin-bottom: 2px;
+  }
+  
+  #custom-reviews-skyline .author-info span {
+    display: block; font-size: 13px; color: var(--text-mid); font-weight: 400;
+  }
+</style>
+
+<section id="custom-reviews-skyline">
+  <div class="container">
+    <div style="display:block;width:100%">
+      
+      <div class="reviews-intro">
+        <span class="eyebrow">Customer Stories</span>
+        <h2 class="section-title">Loved by pool owners.</h2>
+      </div>
+
+      <div class="reviews-grid">
+        
+        <!-- Review 1 -->
+        <div class="review-card">
+          <div>
+            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+            <p class="review-text">"Finally, a pool service I don't have to micromanage. They show up when they say they will, and the detailed photo reports after each visit are an absolute game-changer for my peace of mind."</p>
+          </div>
+          <div class="review-author">
+            <div class="author-avatar">S</div>
+            <div class="author-info">
+              <strong>Sarah M.</strong>
+              <span>Orlando, FL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="review-card">
+          <div>
+            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+            <p class="review-text">"I've tried three different pool companies before Skyline. None of them could keep my water this clear. The technician is polite, fast, and knows exactly what he's doing."</p>
+          </div>
+          <div class="review-author">
+            <div class="author-avatar">J</div>
+            <div class="author-info">
+              <strong>James T.</strong>
+              <span>Kissimmee, FL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card">
+          <div>
+            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+            <p class="review-text">"The transparent pricing and lack of contracts won me over initially, but the consistent weekly quality is why I stay. It's truly effortless pool care."</p>
+          </div>
+          <div class="review-author">
+            <div class="author-avatar">E</div>
+            <div class="author-info">
+              <strong>Emily R.</strong>
+              <span>Winter Park, FL</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+</section>

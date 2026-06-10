@@ -1,0 +1,674 @@
+/* ==========================================================================
+   POOL CARE SPECIFIC STYLES
+   ========================================================================== */
+
+/* ── HERO ────────────────────────────────────────────────────────────── */
+.pool-hero {
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-primary);
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .pool-hero {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pool-hero__photo-wrap {
+  width: 100%;
+  overflow: hidden;
+  min-height: 300px;
+}
+
+@media (min-width: 900px) {
+  .pool-hero__photo-wrap {
+    min-height: 520px;
+  }
+}
+
+.pool-hero__photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.pool-hero__copy {
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 900px) {
+  .pool-hero__copy {
+    padding: 48px 52px 52px 48px;
+  }
+}
+
+.pool-hero__headline {
+  font-size: clamp(34px, 5vw, 60px);
+  font-weight: var(--weight-bold);
+  line-height: 1.04;
+  letter-spacing: -1.5px;
+  color: var(--color-white);
+  margin-bottom: 14px;
+}
+
+.pool-hero__headline em {
+  font-style: normal;
+  font-size: clamp(20px, 2.5vw, 34px);
+  display: block;
+  margin-top: 10px;
+}
+
+.pool-hero__sub {
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-normal);
+  color: var(--color-white);
+  margin-bottom: 24px;
+}
+
+.pool-hero__chips {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.pool-hero__chip {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: var(--radius-full);
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: var(--weight-bold);
+  color: var(--color-white);
+}
+
+@media (min-width: 768px) {
+  .pool-hero__chip {
+    align-items: center;
+  }
+}
+
+.pool-hero__chip svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+@media (min-width: 768px) {
+  .pool-hero__chip svg {
+    margin-top: 0;
+  }
+}
+
+.pool-hero__launcher {
+  max-width: 100%;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .pool-hero__launcher {
+    max-width: 480px;
+  }
+}
+
+/* ── HOW IT WORKS OVERRIDES (Line connecting steps) ──────────────────── */
+.how-grid-pool {
+  position: relative;
+}
+@media (min-width: 900px) {
+  .how-grid-pool::before {
+    content: '';
+    position: absolute;
+    top: 64px; /* 36px padding + 28px half of step num */
+    left: 16%;
+    right: 16%;
+    height: 2px;
+    background: rgba(247, 158, 202, 0.25);
+    z-index: 0;
+  }
+}
+
+.how-step--pool {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 36px 30px;
+  border: 2px solid rgba(247, 158, 202, 0.25);
+  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.how-step--pool:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+  transform: translateY(-6px);
+}
+
+.how-step__num--pool {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: var(--weight-black);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+  box-shadow: 0 6px 16px rgba(247, 158, 202, 0.4);
+  position: relative;
+  z-index: 2;
+  border: 4px solid var(--color-white);
+}
+
+/* ── WHY SKYLINE CARDS ───────────────────────────────────────────────── */
+.why-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+  height: 100%;
+}
+
+.why-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(75, 124, 249, 0.25); /* nav blue tint */
+  transform: translateY(-3px);
+}
+
+.why-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: rgba(75, 124, 249, 0.1);
+  color: var(--color-nav);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.why-card__num {
+  font-size: 11px;
+  font-weight: var(--weight-black);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #B8B8B8;
+  margin-bottom: 6px;
+}
+
+.why-card__title {
+  font-size: 19px;
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.why-card__desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #666;
+}
+
+/* ── PRICING PLANS ───────────────────────────────────────────────────── */
+.plan-card {
+  border-radius: 24px;
+  border: 1.5px solid var(--color-border);
+  overflow: hidden;
+  background: var(--color-white);
+  transition: box-shadow 0.2s, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.plan-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(75, 124, 249, 0.5); /* nav blue half opacity */
+}
+
+.plan-card__img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.plan-card__body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+@media (min-width: 900px) {
+  .plan-card__body {
+    padding: 32px;
+  }
+}
+
+.plan-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(75, 124, 249, 0.1);
+  color: var(--color-nav);
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
+  align-self: flex-start;
+}
+
+.plan-card__tag--featured {
+  background: rgba(255, 213, 50, 0.2); /* CTA yellow tint */
+  color: #d1a815; /* darker yellow for contrast */
+}
+
+.plan-card__title {
+  font-size: 24px;
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+  margin-bottom: 12px;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.plan-card__desc {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.plan-card__includes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+  flex-grow: 1;
+}
+
+.plan-card__includes li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.plan-card__includes svg {
+  color: var(--color-secondary); /* Success color / Mint */
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.plan-card--pink {
+  background-color: var(--color-primary);
+  color: #000;
+}
+.plan-card--pink .plan-card__title {
+  color: #000;
+}
+.plan-card--pink .plan-card__desc,
+.plan-card--pink .plan-card__includes {
+  color: rgba(0,0,0,0.85);
+}
+.plan-card--pink .plan-card__price {
+  color: #000;
+}
+.plan-card--pink .plan-card__price span {
+  color: rgba(0,0,0,0.7) !important;
+}
+
+.plan-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.plan-card__price {
+  font-size: 14px;
+  color: #888;
+}
+
+.plan-card__price strong {
+  font-size: 24px;
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+}
+
+/* ── FAQ ACCORDION ───────────────────────────────────────────────────── */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(247, 158, 202, 0.3); /* subtle pink border */
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 4px 16px rgba(247, 158, 202, 0.15);
+}
+
+.faq-q {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 24px;
+  font-size: 18px;
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.faq-q.is-open {
+  color: var(--color-primary);
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  color: var(--color-primary);
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.faq-icon::before { top: 11px; left: 4px; right: 4px; height: 2px; }
+.faq-icon::after { top: 4px; bottom: 4px; left: 11px; width: 2px; }
+
+.faq-q.is-open .faq-icon::after { transform: rotate(90deg); }
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.faq-a.is-open {
+  max-height: 500px;
+}
+
+.faq-a__inner {
+  padding: 0 24px 24px 24px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #666;
+}
+
+/* ── CTA INPUT FORM ──────────────────────────────────────────────────── */
+.pool-cta-form {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+  .pool-cta-form {
+    flex-direction: row;
+  }
+}
+
+.pool-cta-form__input {
+  flex-grow: 1;
+  height: 56px;
+  border-radius: var(--radius-full);
+  border: none;
+  padding: 0 24px;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s;
+  color: var(--color-text);
+  font-family: inherit;
+}
+
+.pool-cta-form__input:focus {
+  box-shadow: 0 4px 20px rgba(75, 124, 249, 0.15); /* nav blue glow */
+}
+
+/* Inline form in Hero */
+.hero-inline-form {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 24px;
+  border-radius: 18px;
+}
+
+.hero-inline-form__title {
+  margin-bottom: 14px;
+  font-weight: var(--weight-bold);
+  color: var(--color-white);
+  font-size: 18px;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+.hero-inline-form__field {
+  margin-bottom: 10px;
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+}
+
+.hero-inline-form__input {
+  display: block;
+  background: transparent;
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  padding: 0;
+  outline: none;
+  font-family: inherit;
+}
+
+.hero-inline-form__btn {
+  border-radius: 12px;
+  font-weight: var(--weight-bold);
+  padding: 16px 24px;
+  background: var(--color-nav);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.hero-inline-form__btn:hover {
+  background: #3963d3;
+}
+
+.hero-inline-form__footer {
+  text-align: center;
+  padding-top: 14px;
+  font-size: 13px;
+  font-weight: var(--weight-bold);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ── BEFORE AFTER SLIDER ─────────────────────────────────────────────── */
+.ba-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  margin-top: 36px;
+}
+@media (min-width: 900px) {
+  .ba-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* The card is just visual chrome — border, shadow, text below the slider.
+   It does NOT use overflow:hidden so GPU-promoted children aren't clipped wrongly. */
+.ba-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  /* NO overflow:hidden here — clipping is handled by ba-slider itself */
+}
+
+/* The slider is its own island: fully self-contained, clips its own children */
+.ba-slider {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  cursor: col-resize;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  /* Force this element onto its own GPU layer so border-radius clips children properly */
+  isolation: isolate;
+  contain: strict;
+}
+
+/* Before image — fills the entire slider */
+.ba-before-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* After-clip: a simple absolutely-positioned image.
+   clip-path goes directly on the img — no intermediate stacking-context div.
+   This avoids the GPU layer promotion that bypasses parent overflow clipping. */
+.ba-after-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  z-index: 1;
+  clip-path: inset(0 0 0 50%);
+}
+
+.ba-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: left;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ba-handle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-nav);
+  flex-shrink: 0;
+}
+
+.ba-label {
+  position: absolute;
+  top: 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ba-label-before {
+  left: 12px;
+  background: rgba(0,0,0,0.55);
+  color: white;
+}
+
+.ba-label-after {
+  right: 12px;
+  background: var(--color-nav);
+  color: white;
+}
+
+.ba-caption {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #888;
+}
