@@ -1,0 +1,16 @@
+# IDE e ferramentas de agente
+GEMINI.md
+github.md
+.gemini/
+
+# Ambiente
+.env
+.env.local
+.env.*.local
+
+# Dependências
+node_modules/
+
+# Caches
+.cache/
+*.log
