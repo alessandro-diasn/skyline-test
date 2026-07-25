@@ -7,6 +7,7 @@ import { initHeroSlider } from './components/hero-slider.js';
 import { initBeforeAfterSliders } from './components/before-after.js';
 import { initTestimonials } from './components/testimonials.js';
 import { initScrollReveal } from './components/scroll-reveal.js';
+import { initInlineContactForm } from './components/inline-contact-form.js';
 
 function initHeaderHeight() {
   const header = document.querySelector('.main-header');
@@ -28,6 +29,7 @@ function init() {
   initBeforeAfterSliders();
   initTestimonials();
   initScrollReveal();
+  initInlineContactForm();
 }
 
 document.addEventListener('DOMContentLoaded', init);

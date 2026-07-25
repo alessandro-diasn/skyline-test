@@ -308,24 +308,41 @@ function setupFormSubmit() {
       submitBtn.textContent = 'Sending…';
     }
 
-    // Collect form data
-    const data = new FormData(form);
+    // Collect form data into JSON object, supporting multiple values (checkboxes)
+    const formData = new FormData(form);
+    const payload = {};
+    for (const [key, value] of formData.entries()) {
+      if (payload[key] !== undefined) {
+        if (Array.isArray(payload[key])) {
+          payload[key].push(value);
+        } else {
+          payload[key] = [payload[key], value];
+        }
+      } else {
+        payload[key] = value;
+      }
+    }
 
-    // Simulate async submission (replace with real endpoint)
-    setTimeout(() => {
-      showSuccess();
-    }, 1200);
-
-    // === REAL SUBMISSION — uncomment and set your endpoint ===
-    // fetch('/wp-admin/admin-ajax.php', { method: 'POST', body: data })
-    //   .then(r => r.json())
-    //   .then(() => showSuccess())
-    //   .catch(() => {
-    //     if (submitBtn) {
-    //       submitBtn.disabled = false;
-    //       submitBtn.textContent = 'Confirm Booking';
-    //     }
-    //   });
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(r => r.json())
+      .then(res => {
+        if (res.success) {
+          showSuccess();
+        } else {
+          throw new Error(res.error || 'Failed to send');
+        }
+      })
+      .catch(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Confirm Booking';
+        }
+        alert('Something went wrong sending your booking request. Please call us directly at +1 (407) 861-6418.');
+      });
   });
 }
 
